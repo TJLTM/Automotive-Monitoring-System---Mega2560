@@ -1,0 +1,342 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 3
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:GND #PWR?
+U 1 1 614882CA
+P 3850 2950
+AR Path="/614882CA" Ref="#PWR?"  Part="1" 
+AR Path="/614516B8/614882CA" Ref="#PWR013"  Part="1" 
+F 0 "#PWR013" H 3850 2700 50  0001 C CNN
+F 1 "GND" H 3855 2777 50  0000 C CNN
+F 2 "" H 3850 2950 50  0001 C CNN
+F 3 "" H 3850 2950 50  0001 C CNN
+	1    3850 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 3050 3950 3050
+Wire Wire Line
+	3950 3050 3950 3200
+Wire Wire Line
+	4700 2950 4700 3050
+$Comp
+L power:+10V #PWR?
+U 1 1 614882D3
+P 3400 3000
+AR Path="/614882D3" Ref="#PWR?"  Part="1" 
+AR Path="/614516B8/614882D3" Ref="#PWR011"  Part="1" 
+F 0 "#PWR011" H 3400 2850 50  0001 C CNN
+F 1 "+10V" H 3415 3173 50  0000 C CNN
+F 2 "" H 3400 3000 50  0001 C CNN
+F 3 "" H 3400 3000 50  0001 C CNN
+	1    3400 3000
+	1    0    0    -1  
+$EndComp
+Connection ~ 7450 2950
+$Comp
+L power:+10V #PWR?
+U 1 1 614882DA
+P 7450 2950
+AR Path="/614882DA" Ref="#PWR?"  Part="1" 
+AR Path="/614516B8/614882DA" Ref="#PWR016"  Part="1" 
+F 0 "#PWR016" H 7450 2800 50  0001 C CNN
+F 1 "+10V" H 7465 3123 50  0000 C CNN
+F 2 "" H 7450 2950 50  0001 C CNN
+F 3 "" H 7450 2950 50  0001 C CNN
+	1    7450 2950
+	1    0    0    -1  
+$EndComp
+Connection ~ 6500 3550
+Wire Wire Line
+	6500 3550 6500 3350
+$Comp
+L power:+VDC #PWR?
+U 1 1 614882E2
+P 6500 3350
+AR Path="/614882E2" Ref="#PWR?"  Part="1" 
+AR Path="/614516B8/614882E2" Ref="#PWR014"  Part="1" 
+F 0 "#PWR014" H 6500 3250 50  0001 C CNN
+F 1 "+VDC" H 6500 3625 50  0000 C CNN
+F 2 "" H 6500 3350 50  0001 C CNN
+F 3 "" H 6500 3350 50  0001 C CNN
+	1    6500 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 3150 3400 3000
+$Comp
+L Device:CP C?
+U 1 1 614882E9
+P 7450 4150
+AR Path="/614882E9" Ref="C?"  Part="1" 
+AR Path="/614516B8/614882E9" Ref="C5"  Part="1" 
+F 0 "C5" H 7568 4196 50  0000 L CNN
+F 1 "120uF" H 7568 4105 50  0000 L CNN
+F 2 "" H 7488 4000 50  0001 C CNN
+F 3 "~" H 7450 4150 50  0001 C CNN
+	1    7450 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 3100 5250 2950
+Wire Wire Line
+	4000 3100 5250 3100
+Wire Wire Line
+	4000 3250 4000 3100
+Wire Wire Line
+	3700 3250 4000 3250
+Wire Wire Line
+	3700 3650 3700 3250
+Wire Wire Line
+	3850 3650 3700 3650
+Wire Wire Line
+	3650 3750 3850 3750
+Wire Wire Line
+	3650 3200 3650 3750
+Wire Wire Line
+	3950 3200 3650 3200
+Wire Wire Line
+	6700 3650 6700 4300
+Wire Wire Line
+	6150 3650 6700 3650
+Wire Wire Line
+	6700 4300 6950 4300
+Connection ~ 6700 4300
+Wire Wire Line
+	6700 4450 6700 4300
+Wire Wire Line
+	6150 4000 6150 3750
+Wire Wire Line
+	6500 3550 6500 4000
+Wire Wire Line
+	6150 3550 6500 3550
+Connection ~ 6950 4300
+Connection ~ 6500 4300
+Wire Wire Line
+	6500 4300 6700 4300
+Wire Wire Line
+	7450 4300 6950 4300
+Wire Wire Line
+	6150 4300 6500 4300
+Wire Wire Line
+	3850 3450 3400 3450
+Wire Wire Line
+	3550 3550 3850 3550
+Wire Wire Line
+	3550 3900 3550 3550
+Wire Wire Line
+	3550 4450 3550 4200
+Connection ~ 5250 2950
+Connection ~ 7450 3450
+Wire Wire Line
+	7450 2950 5250 2950
+Wire Wire Line
+	7450 3450 7450 2950
+Wire Wire Line
+	7450 4000 7450 3450
+Wire Wire Line
+	6950 3450 7150 3450
+Connection ~ 6950 3450
+Wire Wire Line
+	6150 3450 6950 3450
+Wire Wire Line
+	6950 3700 6950 3450
+Wire Wire Line
+	5250 2600 5100 2600
+Wire Wire Line
+	5250 2950 5250 2600
+Wire Wire Line
+	5100 2950 5250 2950
+Wire Wire Line
+	4700 2950 4600 2950
+Connection ~ 4700 2950
+Wire Wire Line
+	4700 2600 4700 2950
+Wire Wire Line
+	4800 2600 4700 2600
+Wire Wire Line
+	4800 2950 4700 2950
+Wire Wire Line
+	4300 2950 3850 2950
+$Comp
+L Device:R R?
+U 1 1 6148831B
+P 3400 3300
+AR Path="/6148831B" Ref="R?"  Part="1" 
+AR Path="/614516B8/6148831B" Ref="R2"  Part="1" 
+F 0 "R2" H 3470 3346 50  0000 L CNN
+F 1 "4.7K" H 3470 3255 50  0000 L CNN
+F 2 "" V 3330 3300 50  0001 C CNN
+F 3 "~" H 3400 3300 50  0001 C CNN
+	1    3400 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61488321
+P 4950 2950
+AR Path="/61488321" Ref="R?"  Part="1" 
+AR Path="/614516B8/61488321" Ref="R4"  Part="1" 
+F 0 "R4" V 5157 2950 50  0000 C CNN
+F 1 "7.5K" V 5066 2950 50  0000 C CNN
+F 2 "" V 4880 2950 50  0001 C CNN
+F 3 "~" H 4950 2950 50  0001 C CNN
+	1    4950 2950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61488327
+P 3550 4450
+AR Path="/61488327" Ref="#PWR?"  Part="1" 
+AR Path="/614516B8/61488327" Ref="#PWR012"  Part="1" 
+F 0 "#PWR012" H 3550 4200 50  0001 C CNN
+F 1 "GND" H 3555 4277 50  0000 C CNN
+F 2 "" H 3550 4450 50  0001 C CNN
+F 3 "" H 3550 4450 50  0001 C CNN
+	1    3550 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6148832D
+P 6700 4450
+AR Path="/6148832D" Ref="#PWR?"  Part="1" 
+AR Path="/614516B8/6148832D" Ref="#PWR015"  Part="1" 
+F 0 "#PWR015" H 6700 4200 50  0001 C CNN
+F 1 "GND" H 6705 4277 50  0000 C CNN
+F 2 "" H 6700 4450 50  0001 C CNN
+F 3 "" H 6700 4450 50  0001 C CNN
+	1    6700 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 61488333
+P 4950 2600
+AR Path="/61488333" Ref="C?"  Part="1" 
+AR Path="/614516B8/61488333" Ref="C2"  Part="1" 
+F 0 "C2" H 5065 2646 50  0000 L CNN
+F 1 "C" H 5065 2555 50  0000 L CNN
+F 2 "" H 4988 2450 50  0001 C CNN
+F 3 "~" H 4950 2600 50  0001 C CNN
+	1    4950 2600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 61488339
+P 3550 4050
+AR Path="/61488339" Ref="C?"  Part="1" 
+AR Path="/614516B8/61488339" Ref="C1"  Part="1" 
+F 0 "C1" H 3665 4096 50  0000 L CNN
+F 1 "0.1uF" H 3665 4005 50  0000 L CNN
+F 2 "" H 3588 3900 50  0001 C CNN
+F 3 "~" H 3550 4050 50  0001 C CNN
+	1    3550 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L SamacSys_Parts:1N5817 D?
+U 1 1 61488345
+P 6950 3700
+AR Path="/61488345" Ref="D?"  Part="1" 
+AR Path="/614516B8/61488345" Ref="D1"  Part="1" 
+F 0 "D1" V 7204 3830 50  0000 L CNN
+F 1 "1N5817" V 7295 3830 50  0000 L CNN
+F 2 "DIOAD1414W86L464D238" H 7400 3700 50  0001 L CNN
+F 3 "http://www.st.com/web/en/resource/technical/document/datasheet/CD00001625.pdf" H 7400 3600 50  0001 L CNN
+F 4 "1N5817, Schottky Diode,  1A max, 20V, 2-Pin, DO-41" H 7400 3500 50  0001 L CNN "Description"
+F 5 "" H 7400 3400 50  0001 L CNN "Height"
+F 6 "511-1N5817" H 7400 3300 50  0001 L CNN "Mouser Part Number"
+F 7 "https://www.mouser.co.uk/ProductDetail/STMicroelectronics/1N5817?qs=JV7lzlMm3yKNnxZdh%252BSMnw%3D%3D" H 7400 3200 50  0001 L CNN "Mouser Price/Stock"
+F 8 "STMicroelectronics" H 7400 3100 50  0001 L CNN "Manufacturer_Name"
+F 9 "1N5817" H 7400 3000 50  0001 L CNN "Manufacturer_Part_Number"
+	1    6950 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:L L?
+U 1 1 6148834B
+P 7300 3450
+AR Path="/6148834B" Ref="L?"  Part="1" 
+AR Path="/614516B8/6148834B" Ref="L1"  Part="1" 
+F 0 "L1" V 7490 3450 50  0000 C CNN
+F 1 "100mH" V 7399 3450 50  0000 C CNN
+F 2 "" H 7300 3450 50  0001 C CNN
+F 3 "~" H 7300 3450 50  0001 C CNN
+	1    7300 3450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:CP C?
+U 1 1 61488351
+P 6500 4150
+AR Path="/61488351" Ref="C?"  Part="1" 
+AR Path="/614516B8/61488351" Ref="C4"  Part="1" 
+F 0 "C4" H 6618 4196 50  0000 L CNN
+F 1 "68uF" H 6618 4105 50  0000 L CNN
+F 2 "" H 6538 4000 50  0001 C CNN
+F 3 "~" H 6500 4150 50  0001 C CNN
+	1    6500 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 61488357
+P 6150 4150
+AR Path="/61488357" Ref="C?"  Part="1" 
+AR Path="/614516B8/61488357" Ref="C3"  Part="1" 
+F 0 "C3" H 6265 4196 50  0000 L CNN
+F 1 "0.1uF" H 6265 4105 50  0000 L CNN
+F 2 "" H 6188 4000 50  0001 C CNN
+F 3 "~" H 6150 4150 50  0001 C CNN
+	1    6150 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6148835D
+P 4450 2950
+AR Path="/6148835D" Ref="R?"  Part="1" 
+AR Path="/614516B8/6148835D" Ref="R3"  Part="1" 
+F 0 "R3" V 4657 2950 50  0000 C CNN
+F 1 "1k" V 4566 2950 50  0000 C CNN
+F 2 "" V 4380 2950 50  0001 C CNN
+F 3 "~" H 4450 2950 50  0001 C CNN
+	1    4450 2950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L SamacSys_Parts:LM2597MX-ADJ_NOPB IC?
+U 1 1 61488369
+P 3850 3450
+AR Path="/61488369" Ref="IC?"  Part="1" 
+AR Path="/614516B8/61488369" Ref="IC2"  Part="1" 
+F 0 "IC2" H 5000 3715 50  0000 C CNN
+F 1 "LM2597MX-ADJ_NOPB" H 5000 3624 50  0000 C CNN
+F 2 "SOIC127P600X175-8N" H 6000 3550 50  0001 L CNN
+F 3 "http://www.ti.com/lit/gpn/LM2597" H 6000 3450 50  0001 L CNN
+F 4 "SIMPLE SWITCHER Power Converter 150 kHz 0.5A Step-Down Voltage Regulator" H 6000 3350 50  0001 L CNN "Description"
+F 5 "1.75" H 6000 3250 50  0001 L CNN "Height"
+F 6 "926-LM2597MXADJNOPB" H 6000 3150 50  0001 L CNN "Mouser Part Number"
+F 7 "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/LM2597MX-ADJ-NOPB?qs=X1J7HmVL2ZEDIgwfzjXNjw%3D%3D" H 6000 3050 50  0001 L CNN "Mouser Price/Stock"
+F 8 "Texas Instruments" H 6000 2950 50  0001 L CNN "Manufacturer_Name"
+F 9 "LM2597MX-ADJ/NOPB" H 6000 2850 50  0001 L CNN "Manufacturer_Part_Number"
+	1    3850 3450
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

@@ -889,6 +889,98 @@ F 9 "1727751" H 1750 3750 50  0001 L CNN "Manufacturer_Part_Number"
 	1    1000 4350
 	0    -1   -1   0   
 $EndComp
+Wire Wire Line
+	2550 3700 2150 3700
+Wire Wire Line
+	2150 3700 2150 4500
+Wire Wire Line
+	2150 4500 1000 4500
+Wire Wire Line
+	1000 4500 1000 4350
+Wire Wire Line
+	1300 4350 1300 4450
+Wire Wire Line
+	1300 4450 2200 4450
+Wire Wire Line
+	2200 4450 2200 3800
+Wire Wire Line
+	2200 3800 2550 3800
+Wire Wire Line
+	2550 3900 2250 3900
+Wire Wire Line
+	2250 3900 2250 3300
+Wire Wire Line
+	2250 3300 1000 3300
+Wire Wire Line
+	1000 3300 1000 3450
+Wire Wire Line
+	1300 3450 1300 3350
+Wire Wire Line
+	1300 3350 2300 3350
+Wire Wire Line
+	2300 3350 2300 4000
+Wire Wire Line
+	2300 4000 2550 4000
+Wire Wire Line
+	1100 4350 1100 4550
+Wire Wire Line
+	1100 4550 2250 4550
+Wire Wire Line
+	2250 4550 2250 4400
+Wire Wire Line
+	2250 4400 2550 4400
+Wire Wire Line
+	1400 4350 1400 4600
+Wire Wire Line
+	1400 4600 2300 4600
+Wire Wire Line
+	2300 4600 2300 4500
+Wire Wire Line
+	2300 4500 2550 4500
+Wire Wire Line
+	2550 4600 2350 4600
+Wire Wire Line
+	2350 4600 2350 4650
+Wire Wire Line
+	2350 4650 700  4650
+Wire Wire Line
+	700  4650 700  3350
+Wire Wire Line
+	700  3350 1100 3350
+Wire Wire Line
+	1100 3350 1100 3450
+Wire Wire Line
+	1400 3450 1400 3250
+Wire Wire Line
+	1400 3250 650  3250
+Wire Wire Line
+	650  3250 650  4700
+Wire Wire Line
+	650  4700 2550 4700
+Wire Wire Line
+	1200 4350 1200 5100
+Wire Wire Line
+	2550 5200 1500 5200
+Wire Wire Line
+	2550 5300 600  5300
+Wire Wire Line
+	600  5300 600  3200
+Wire Wire Line
+	600  3200 1200 3200
+Wire Wire Line
+	1200 3200 1200 3450
+Wire Wire Line
+	1500 3450 1500 3150
+Wire Wire Line
+	1500 3150 550  3150
+Wire Wire Line
+	550  3150 550  5400
+Wire Wire Line
+	1200 5100 2550 5100
+Wire Wire Line
+	1500 5200 1500 4350
+Wire Wire Line
+	550  5400 2550 5400
 $Comp
 L SamacSys_Parts:1727751 J24
 U 1 1 6172B44B
@@ -906,6 +998,116 @@ F 9 "1727751" H 1750 6300 50  0001 L CNN "Manufacturer_Part_Number"
 	1    1000 6900
 	0    -1   -1   0   
 $EndComp
+Wire Wire Line
+	1000 6900 1000 7150
+Wire Wire Line
+	1000 7150 2050 7150
+Wire Wire Line
+	2050 7150 2050 5750
+Wire Wire Line
+	2050 5750 2550 5750
+Wire Wire Line
+	1300 6900 1300 7100
+Wire Wire Line
+	1300 7100 2100 7100
+Wire Wire Line
+	2100 7100 2100 5850
+Wire Wire Line
+	2100 5850 2550 5850
+Wire Wire Line
+	1000 6000 1000 5750
+Wire Wire Line
+	1000 5750 1950 5750
+Wire Wire Line
+	1950 5750 1950 5950
+Wire Wire Line
+	1950 5950 2550 5950
+Wire Wire Line
+	1300 6000 1300 5800
+Wire Wire Line
+	1300 5800 1900 5800
+Wire Wire Line
+	1900 6050 2550 6050
+Wire Wire Line
+	1900 5800 1900 6050
+Wire Wire Line
+	1100 6900 1100 7200
+Wire Wire Line
+	1100 7200 2200 7200
+Wire Wire Line
+	2200 7200 2200 6400
+Wire Wire Line
+	2200 6400 2550 6400
+Wire Wire Line
+	1400 6900 1400 7300
+Wire Wire Line
+	1400 7300 2250 7300
+Wire Wire Line
+	2250 7300 2250 6500
+Wire Wire Line
+	2250 6500 2550 6500
+Wire Wire Line
+	1100 6000 1100 5900
+Wire Wire Line
+	1100 5900 850  5900
+Wire Wire Line
+	850  5900 850  7350
+Wire Wire Line
+	850  7350 2300 7350
+Wire Wire Line
+	2300 7350 2300 6600
+Wire Wire Line
+	2300 6600 2550 6600
+Wire Wire Line
+	1400 6000 1400 5850
+Wire Wire Line
+	1400 5850 800  5850
+Wire Wire Line
+	800  5850 800  7400
+Wire Wire Line
+	800  7400 2350 7400
+Wire Wire Line
+	2350 7400 2350 6700
+Wire Wire Line
+	2350 6700 2550 6700
+Wire Wire Line
+	1200 6900 1200 7600
+Wire Wire Line
+	1200 7600 2400 7600
+Wire Wire Line
+	2400 7600 2400 7050
+Wire Wire Line
+	2400 7050 2550 7050
+Wire Wire Line
+	1500 6900 1500 7700
+Wire Wire Line
+	1500 7700 2450 7700
+Wire Wire Line
+	2450 7700 2450 7150
+Wire Wire Line
+	2450 7150 2550 7150
+Wire Wire Line
+	2550 7250 2500 7250
+Wire Wire Line
+	2500 7250 2500 7750
+Wire Wire Line
+	2500 7750 750  7750
+Wire Wire Line
+	750  7750 750  5650
+Wire Wire Line
+	750  5650 1200 5650
+Wire Wire Line
+	1200 5650 1200 6000
+Wire Wire Line
+	1500 6000 1500 5600
+Wire Wire Line
+	1500 5600 700  5600
+Wire Wire Line
+	700  5600 700  7500
+Wire Wire Line
+	700  7500 2550 7500
+Wire Wire Line
+	2550 7500 2550 7350
 $Sheet
 S 6200 1700 850  250 
 U 61534326
