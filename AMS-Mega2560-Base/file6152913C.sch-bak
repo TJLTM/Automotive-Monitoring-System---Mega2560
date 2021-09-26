@@ -1,0 +1,52 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 14 13
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text HLabel 1550 2250 0    50   Input ~ 0
+RSCOM1TX
+Text HLabel 1550 2350 0    50   Input ~ 0
+RSCOM1RX
+Text HLabel 1550 2450 0    50   Input ~ 0
+LED1GND
+Text HLabel 1550 2550 0    50   Input ~ 0
+LED2GND
+Text HLabel 1550 2950 0    50   Input ~ 0
+Input2
+Text HLabel 1550 2850 0    50   Input ~ 0
+Input1
+Text HLabel 1550 2750 0    50   Input ~ 0
+LoggingSwitchIN
+Text HLabel 1550 2650 0    50   Input ~ 0
+AudioSirenGND
+Text HLabel 1550 3150 0    50   Input ~ 0
+TTLCXom1TX
+Text HLabel 1550 3250 0    50   Input ~ 0
+TTLCom1RX
+Text HLabel 1550 3350 0    50   Input ~ 0
+LED1TTL
+Text HLabel 1550 3450 0    50   Input ~ 0
+LED2TTL
+Text HLabel 1550 3550 0    50   Input ~ 0
+AudioSirenTTL
+Text HLabel 1550 3650 0    50   Input ~ 0
+SDA
+Text HLabel 1550 3750 0    50   Input ~ 0
+SCL
+Text HLabel 1550 3850 0    50   Input ~ 0
+TTLLoggingSwitch
+Text HLabel 1550 3950 0    50   Input ~ 0
+TTLInput1
+Text HLabel 1550 4050 0    50   Input ~ 0
+TTLInput2
+$EndSCHEMATC
