@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 13
+Sheet 1 14
 Title ""
 Date "mar. 31 mars 2015"
 Rev ""
@@ -239,10 +239,10 @@ NoConn ~ 10900 850
 NoConn ~ 11000 850 
 NoConn ~ 11100 850 
 $Comp
-L Connector_Generic:Conn_01x08 P2
+L Connector_Generic:Conn_01x08 P1
 U 1 1 56D71773
 P 9550 1650
-F 0 "P2" H 9550 2050 50  0000 C CNN
+F 0 "P1" H 9550 2050 50  0000 C CNN
 F 1 "Power" V 9650 1650 50  0000 C CNN
 F 2 "Socket_Arduino_Mega:Socket_Strip_Arduino_1x08" H 9550 1650 50  0001 C CNN
 F 3 "" H 9550 1650 50  0000 C CNN
@@ -252,10 +252,10 @@ $EndComp
 Text Notes 9650 1350 0    60   ~ 0
 1
 $Comp
-L power:+3V3 #PWR01
+L power:+3V3 #PWR08
 U 1 1 56D71AA9
 P 9100 1200
-F 0 "#PWR01" H 9100 1050 50  0001 C CNN
+F 0 "#PWR08" H 9100 1050 50  0001 C CNN
 F 1 "+3.3V" V 9100 1450 50  0000 C CNN
 F 2 "" H 9100 1200 50  0000 C CNN
 F 3 "" H 9100 1200 50  0000 C CNN
@@ -265,10 +265,10 @@ $EndComp
 Text Label 8600 1550 0    60   ~ 0
 Reset
 $Comp
-L power:+5V #PWR02
+L power:+5V #PWR07
 U 1 1 56D71D10
 P 9000 1050
-F 0 "#PWR02" H 9000 900 50  0001 C CNN
+F 0 "#PWR07" H 9000 900 50  0001 C CNN
 F 1 "+5V" V 9000 1250 50  0000 C CNN
 F 2 "" H 9000 1050 50  0000 C CNN
 F 3 "" H 9000 1050 50  0000 C CNN
@@ -276,10 +276,10 @@ F 3 "" H 9000 1050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR03
+L power:GND #PWR09
 U 1 1 56D721E6
 P 9250 2150
-F 0 "#PWR03" H 9250 1900 50  0001 C CNN
+F 0 "#PWR09" H 9250 1900 50  0001 C CNN
 F 1 "GND" H 9250 2000 50  0000 C CNN
 F 2 "" H 9250 2150 50  0000 C CNN
 F 3 "" H 9250 2150 50  0000 C CNN
@@ -298,10 +298,10 @@ F 3 "" H 9950 1550 50  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR04
+L power:GND #PWR010
 U 1 1 56D72A3D
 P 10250 2150
-F 0 "#PWR04" H 10250 1900 50  0001 C CNN
+F 0 "#PWR010" H 10250 1900 50  0001 C CNN
 F 1 "GND" H 10250 2000 50  0000 C CNN
 F 2 "" H 10250 2150 50  0000 C CNN
 F 3 "" H 10250 2150 50  0000 C CNN
@@ -309,10 +309,10 @@ F 3 "" H 10250 2150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x08 P3
+L Connector_Generic:Conn_01x08 P2
 U 1 1 56D72F1C
 P 9550 2750
-F 0 "P3" H 9550 3150 50  0000 C CNN
+F 0 "P2" H 9550 3150 50  0000 C CNN
 F 1 "Analog" V 9650 2750 50  0000 C CNN
 F 2 "Socket_Arduino_Mega:Socket_Strip_Arduino_1x08" H 9550 2750 50  0001 C CNN
 F 3 "" H 9550 2750 50  0000 C CNN
@@ -331,10 +331,10 @@ F 3 "" H 9950 2750 50  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x08 P4
+L Connector_Generic:Conn_01x08 P3
 U 1 1 56D73A0E
 P 9550 3700
-F 0 "P4" H 9550 4100 50  0000 C CNN
+F 0 "P3" H 9550 4100 50  0000 C CNN
 F 1 "Analog" V 9650 3700 50  0000 C CNN
 F 2 "Socket_Arduino_Mega:Socket_Strip_Arduino_1x08" H 9550 3700 50  0001 C CNN
 F 3 "" H 9550 3700 50  0000 C CNN
@@ -353,10 +353,10 @@ F 3 "" H 9950 3700 50  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_02x18_Odd_Even P1
+L Connector_Generic:Conn_02x18_Odd_Even P4
 U 1 1 56D743B5
 P 9700 5050
-F 0 "P1" H 9700 6000 50  0000 C CNN
+F 0 "P4" H 9700 6000 50  0000 C CNN
 F 1 "Digital" V 9700 5050 50  0000 C CNN
 F 2 "Socket_Arduino_Mega:Socket_Strip_Arduino_2x18" H 9700 4000 50  0001 C CNN
 F 3 "" H 9700 4000 50  0000 C CNN
@@ -445,10 +445,6 @@ Wire Wire Line
 Wire Wire Line
 	10150 3700 10400 3700
 Wire Wire Line
-	10400 3800 10150 3800
-Wire Wire Line
-	10150 3900 10400 3900
-Wire Wire Line
 	10500 4850 10500 4650
 Wire Wire Line
 	10500 5350 10500 5650
@@ -483,10 +479,10 @@ Wire Wire Line
 Wire Wire Line
 	10750 4850 10600 4850
 $Comp
-L power:+5V #PWR06
+L power:+5V #PWR011
 U 1 1 56D75AB8
 P 10750 4550
-F 0 "#PWR06" H 10750 4400 50  0001 C CNN
+F 0 "#PWR011" H 10750 4400 50  0001 C CNN
 F 1 "+5V" H 10750 4690 50  0000 C CNN
 F 2 "" H 10750 4550 50  0000 C CNN
 F 3 "" H 10750 4550 50  0000 C CNN
@@ -507,10 +503,10 @@ Wire Notes Line
 Wire Notes Line
 	8350 6050 8350 500 
 $Comp
-L power:+10V #PWR010
+L power:+10V #PWR06
 U 1 1 613B2964
 P 8900 1200
-F 0 "#PWR010" H 8900 1050 50  0001 C CNN
+F 0 "#PWR06" H 8900 1050 50  0001 C CNN
 F 1 "+10V" H 8915 1373 50  0000 C CNN
 F 2 "" H 8900 1200 50  0001 C CNN
 F 3 "" H 8900 1200 50  0001 C CNN
@@ -522,11 +518,11 @@ Vin
 Wire Wire Line
 	8900 2050 8900 1200
 $Sheet
-S 6200 900  850  200 
+S 6200 600  850  200 
 U 61493C0E
 F0 "Power" 50
 F1 "file61493C0D.sch" 50
-F2 "VoltageSensorOut" I R 7050 950 50 
+F2 "VoltageSensorOut" I R 7050 650 50 
 $EndSheet
 $Sheet
 S 2550 3650 900  450 
@@ -759,100 +755,102 @@ F8 "RTDIn+" I L 2550 7150 50
 F9 "RTDin-" I L 2550 7250 50 
 $EndSheet
 $Sheet
-S 6200 1300 850  200 
+S 6200 1000 850  200 
 U 614CA8F3
 F0 "RPM Sensor" 50
 F1 "file614CA8F2.sch" 50
-F2 "RPM-Vout" I R 7050 1350 50 
-F3 "TachIn" I L 6200 1350 50 
+F2 "RPM-Vout" I R 7050 1050 50 
+F3 "TachIn" I L 6200 1050 50 
 $EndSheet
 Entry Wire Line
-	4050 7350 4150 7450
+	4050 7100 4150 7200
 Entry Wire Line
-	4050 7250 4150 7350
+	4050 7000 4150 7100
 Entry Wire Line
-	4050 7150 4150 7250
+	4050 6900 4150 7000
 Entry Wire Line
-	4050 7050 4150 7150
+	4050 6800 4150 6900
 Entry Wire Line
-	4050 6950 4150 7050
+	4050 6700 4150 6800
 Entry Wire Line
-	4050 6850 4150 6950
+	4050 6600 4150 6700
 Entry Wire Line
-	4050 6750 4150 6850
+	4050 6500 4150 6600
 Entry Wire Line
-	4050 6650 4150 6750
+	4050 6400 4150 6500
 Entry Wire Line
-	4050 6550 4150 6650
+	4050 6300 4150 6400
 Wire Wire Line
-	4150 6650 4650 6650
+	4150 6400 4650 6400
 Wire Wire Line
-	4650 6750 4150 6750
+	4650 6500 4150 6500
 Wire Wire Line
-	4150 6850 4650 6850
+	4150 6600 4650 6600
 Wire Wire Line
-	4650 6950 4150 6950
+	4650 6700 4150 6700
 Wire Wire Line
-	4150 7050 4650 7050
+	4150 6800 4650 6800
 Wire Wire Line
-	4150 7150 4650 7150
+	4150 6900 4650 6900
 Wire Wire Line
-	4150 7250 4650 7250
+	4150 7000 4650 7000
 Wire Wire Line
-	4150 7350 4650 7350
+	4150 7100 4650 7100
 Wire Wire Line
-	4150 7450 4650 7450
-Text Label 4150 7450 0    50   ~ 0
+	4150 7200 4650 7200
+Text Label 4150 7200 0    50   ~ 0
 Carb
-Text Label 4150 7250 0    50   ~ 0
+Text Label 4150 7000 0    50   ~ 0
 FrontT
-Text Label 4150 7350 0    50   ~ 0
+Text Label 4150 7100 0    50   ~ 0
 Ambient
-Text Label 4150 6650 0    50   ~ 0
+Text Label 4150 6400 0    50   ~ 0
 MISO
-Text Label 4150 6750 0    50   ~ 0
+Text Label 4150 6500 0    50   ~ 0
 SCLK
-Text Label 4150 6850 0    50   ~ 0
+Text Label 4150 6600 0    50   ~ 0
 MOSI
-Text Label 4150 6950 0    50   ~ 0
+Text Label 4150 6700 0    50   ~ 0
 WaterT
-Text Label 4150 7050 0    50   ~ 0
+Text Label 4150 6800 0    50   ~ 0
 LsideT
-Text Label 4150 7150 0    50   ~ 0
+Text Label 4150 6900 0    50   ~ 0
 RsideT
 $Sheet
-S 4650 6600 1000 1100
+S 4650 6350 1000 1350
 U 614C2206
 F0 "3.3 Logic Convert" 50
 F1 "file614C2205.sch" 50
-F2 "3.3MISO" I L 4650 6650 50 
-F3 "3.3SCLK" I L 4650 6750 50 
-F4 "5MISO" I R 5650 6650 50 
-F5 "5SCLK" I R 5650 6750 50 
-F6 "5MOSI" I R 5650 6850 50 
-F7 "3.3MOSI" I L 4650 6850 50 
-F8 "3.3Water" I L 4650 6950 50 
-F9 "5Water" I R 5650 6950 50 
-F10 "3.3Lside" I L 4650 7050 50 
-F11 "5Lside" I R 5650 7050 50 
-F12 "3.3Rside" I L 4650 7150 50 
-F13 "5Rside" I R 5650 7150 50 
-F14 "3.3Front" I L 4650 7250 50 
-F15 "5Front" I R 5650 7250 50 
-F16 "3.3Ambient" I L 4650 7350 50 
-F17 "5Ambient" I R 5650 7350 50 
-F18 "3.3Carb" I L 4650 7450 50 
-F19 "5Carb" I R 5650 7450 50 
-F20 "5VSDCS" I R 5650 7550 50 
-F21 "SDDetect" I R 5650 7650 50 
+F2 "3.3MISO" I L 4650 6400 50 
+F3 "3.3SCLK" I L 4650 6500 50 
+F4 "5MISO" I R 5650 6400 50 
+F5 "5SCLK" I R 5650 6500 50 
+F6 "5MOSI" I R 5650 6600 50 
+F7 "3.3MOSI" I L 4650 6600 50 
+F8 "3.3Water" I L 4650 6700 50 
+F9 "5Water" I R 5650 6700 50 
+F10 "3.3Lside" I L 4650 6800 50 
+F11 "5Lside" I R 5650 6800 50 
+F12 "3.3Rside" I L 4650 6900 50 
+F13 "5Rside" I R 5650 6900 50 
+F14 "3.3Front" I L 4650 7000 50 
+F15 "5Front" I R 5650 7000 50 
+F16 "3.3Ambient" I L 4650 7100 50 
+F17 "5Ambient" I R 5650 7100 50 
+F18 "3.3Carb" I L 4650 7200 50 
+F19 "5Carb" I R 5650 7200 50 
+F20 "5VSDCS" I R 5650 7300 50 
+F21 "SDDetect" I R 5650 7400 50 
+F22 "5PiTX" I R 5650 7650 50 
+F23 "5PIRX" I R 5650 7550 50 
 $EndSheet
 Wire Wire Line
 	9100 4350 9100 4850
 $Comp
-L SamacSys_Parts:1727751 J23
+L SamacSys_Parts:1727751 J1
 U 1 1 617335B7
 P 1000 4350
-F 0 "J23" V 1496 3722 50  0000 R CNN
+F 0 "J1" V 1496 3722 50  0000 R CNN
 F 1 "RTD1" V 1405 3722 50  0000 R CNN
 F 2 "SamacSys_Parts:1727751" H 1750 4450 50  0001 L CNN
 F 3 "https://www.phoenixcontact.com/pxc-oc-itemdetail-pdf-web/eshop?lineItemType=LineItem&UID=1727751" H 1750 4350 50  0001 L CNN
@@ -866,10 +864,10 @@ F 9 "1727751" H 1750 3750 50  0001 L CNN "Manufacturer_Part_Number"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L SamacSys_Parts:1727751 J24
+L SamacSys_Parts:1727751 J2
 U 1 1 6172B44B
 P 1000 6900
-F 0 "J24" V 1496 6272 50  0000 R CNN
+F 0 "J2" V 1496 6272 50  0000 R CNN
 F 1 "RTD2" V 1405 6272 50  0000 R CNN
 F 2 "SamacSys_Parts:1727751" H 1750 7000 50  0001 L CNN
 F 3 "https://www.phoenixcontact.com/pxc-oc-itemdetail-pdf-web/eshop?lineItemType=LineItem&UID=1727751" H 1750 6900 50  0001 L CNN
@@ -883,79 +881,78 @@ F 9 "1727751" H 1750 6300 50  0001 L CNN "Manufacturer_Part_Number"
 	0    -1   -1   0   
 $EndComp
 $Sheet
-S 6200 1700 850  250 
+S 6200 1400 850  200 
 U 61534326
-F0 "Vacuum Sensors" 50
+F0 "Vacuum Sensor" 50
 F1 "file61534325.sch" 50
-F2 "VacOut2" I R 7050 1850 50 
-F3 "VacOut1" I R 7050 1750 50 
+F2 "VacOut" I R 7050 1450 50 
 $EndSheet
-Text Label 5800 7650 0    50   ~ 0
+Text Label 5800 7400 0    50   ~ 0
 SDDetect
-Text Label 5900 7550 0    50   ~ 0
+Text Label 5900 7300 0    50   ~ 0
 SDCS
-Text Label 5850 7450 0    50   ~ 0
+Text Label 5850 7200 0    50   ~ 0
 CarbCS
-Text Label 5750 7350 0    50   ~ 0
+Text Label 5750 7100 0    50   ~ 0
 AmbientCS
-Text Label 5800 7250 0    50   ~ 0
+Text Label 5800 7000 0    50   ~ 0
 FrontCS
-Text Label 5800 7150 0    50   ~ 0
+Text Label 5800 6900 0    50   ~ 0
 RsideCS
-Text Label 5800 7050 0    50   ~ 0
+Text Label 5800 6800 0    50   ~ 0
 LsideCS
-Text Label 5800 6950 0    50   ~ 0
+Text Label 5800 6700 0    50   ~ 0
 WaterCS
-Text Label 5900 6850 0    50   ~ 0
+Text Label 5900 6600 0    50   ~ 0
 5MOSI
-Text Label 5900 6750 0    50   ~ 0
+Text Label 5900 6500 0    50   ~ 0
 5CLK
-Text Label 5850 6650 0    50   ~ 0
+Text Label 5850 6400 0    50   ~ 0
 5MISO
 Wire Wire Line
-	5650 6650 6150 6650
+	5650 6400 6150 6400
 Wire Wire Line
-	6150 6750 5650 6750
+	6150 6500 5650 6500
 Wire Wire Line
-	5650 6850 6150 6850
+	5650 6600 6150 6600
 Wire Wire Line
-	6150 6950 5650 6950
+	6150 6700 5650 6700
 Wire Wire Line
-	5650 7050 6150 7050
+	5650 6800 6150 6800
 Wire Wire Line
-	6150 7150 5650 7150
+	6150 6900 5650 6900
 Wire Wire Line
-	5650 7250 6150 7250
+	5650 7000 6150 7000
 Wire Wire Line
-	6150 7350 5650 7350
+	6150 7100 5650 7100
 Wire Wire Line
-	5650 7450 6150 7450
+	5650 7200 6150 7200
 Wire Wire Line
-	6150 7550 5650 7550
+	6150 7300 5650 7300
 Wire Wire Line
-	5650 7650 6150 7650
+	5650 7400 6150 7400
 Entry Wire Line
-	6150 6650 6250 6750
+	6150 6400 6250 6500
 Entry Wire Line
-	6150 6750 6250 6850
+	6150 6500 6250 6600
 Entry Wire Line
-	6150 6850 6250 6950
+	6150 6600 6250 6700
 Entry Wire Line
-	6150 6950 6250 7050
+	6150 6700 6250 6800
 Entry Wire Line
-	6150 7050 6250 7150
+	6150 6800 6250 6900
 Entry Wire Line
-	6150 7150 6250 7250
+	6150 6900 6250 7000
 Entry Wire Line
-	6150 7250 6250 7350
+	6150 7000 6250 7100
 Entry Wire Line
-	6150 7350 6250 7450
+	6150 7100 6250 7200
 Entry Wire Line
-	6150 7450 6250 7550
+	6150 7200 6250 7300
 Entry Wire Line
-	6150 7550 6250 7650
+	6150 7300 6250 7400
 Entry Wire Line
-	6150 7650 6250 7750
+	6150 7400 6250 7500
 Entry Wire Line
 	9800 6200 9700 6300
 Entry Wire Line
@@ -1037,10 +1034,10 @@ Wire Wire Line
 Text Label 5500 1350 2    50   ~ 0
 Tach
 $Comp
-L Connector_Generic:Conn_01x09 J26
+L Connector_Generic:Conn_01x09 J3
 U 1 1 614F2822
 P 2150 1350
-F 0 "J26" V 2367 1346 50  0000 C CNN
+F 0 "J3" V 2367 1346 50  0000 C CNN
 F 1 "AdafruitUltimateGPS" V 2276 1346 50  0000 C CNN
 F 2 "Connector_PinSocket_2.54mm:PinSocket_1x09_P2.54mm_Vertical" H 2150 1350 50  0001 C CNN
 F 3 "~" H 2150 1350 50  0001 C CNN
@@ -1066,10 +1063,10 @@ EN
 Text Label 1750 1750 1    50   ~ 0
 3.3
 $Comp
-L power:+5VP #PWR0100
+L power:+5VP #PWR02
 U 1 1 615C0D69
 P 2450 1850
-F 0 "#PWR0100" H 2450 1700 50  0001 C CNN
+F 0 "#PWR02" H 2450 1700 50  0001 C CNN
 F 1 "+5VP" H 2465 2023 50  0000 C CNN
 F 2 "" H 2450 1850 50  0001 C CNN
 F 3 "" H 2450 1850 50  0001 C CNN
@@ -1077,10 +1074,10 @@ F 3 "" H 2450 1850 50  0001 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR062
+L power:GND #PWR01
 U 1 1 615C4E5E
 P 2350 1850
-F 0 "#PWR062" H 2350 1600 50  0001 C CNN
+F 0 "#PWR01" H 2350 1600 50  0001 C CNN
 F 1 "GND" H 2355 1677 50  0000 C CNN
 F 2 "" H 2350 1850 50  0001 C CNN
 F 3 "" H 2350 1850 50  0001 C CNN
@@ -1127,10 +1124,10 @@ AltCurrent
 Text GLabel 4300 1450 0    50   Input ~ 0
 FuelPressure2
 $Comp
-L SamacSys_Parts:1727751 J25
+L SamacSys_Parts:1727751 J4
 U 1 1 61A53C31
 P 5200 1550
-F 0 "J25" V 5696 922 50  0000 R CNN
+F 0 "J4" V 5696 922 50  0000 R CNN
 F 1 "Sense" V 5605 922 50  0000 R CNN
 F 2 "SamacSys_Parts:1727751" H 5950 1650 50  0001 L CNN
 F 3 "https://www.phoenixcontact.com/pxc-oc-itemdetail-pdf-web/eshop?lineItemType=LineItem&UID=1727751" H 5950 1550 50  0001 L CNN
@@ -1151,8 +1148,6 @@ Text GLabel 4300 1350 0    50   Input ~ 0
 AFR2
 Text GLabel 5200 1150 2    50   Input ~ 0
 FuelPressure1
-Wire Wire Line
-	5200 1350 6200 1350
 Text GLabel 8800 2850 0    50   Input ~ 0
 AltCurrent
 Text GLabel 8800 3050 0    50   Input ~ 0
@@ -1178,29 +1173,13 @@ Wire Wire Line
 Wire Wire Line
 	8800 3500 9350 3500
 Wire Wire Line
-	7050 950  8100 950 
-Wire Wire Line
-	8100 950  8100 2450
+	7050 650  8100 650 
 Wire Wire Line
 	8100 2450 9350 2450
 Wire Wire Line
 	9350 2550 8050 2550
 Wire Wire Line
-	8050 2550 8050 1350
-Wire Wire Line
-	8050 1350 7050 1350
-Wire Wire Line
-	7050 1750 8000 1750
-Wire Wire Line
-	8000 1750 8000 2650
-Wire Wire Line
 	8000 2650 9350 2650
-Wire Wire Line
-	9350 2750 7950 2750
-Wire Wire Line
-	7950 2750 7950 1850
-Wire Wire Line
-	7950 1850 7050 1850
 Text GLabel 7850 3800 2    50   Input ~ 0
 ComTX
 Text GLabel 7850 3900 2    50   Input ~ 0
@@ -1341,10 +1320,10 @@ SCL
 Text GLabel 5600 3900 2    50   Input ~ 0
 SDA
 $Comp
-L SamacSys_Parts:1727751 J27
+L SamacSys_Parts:1727751 J5
 U 1 1 62480C05
 P 5600 4300
-F 0 "J27" V 6096 3672 50  0000 R CNN
+F 0 "J5" V 6096 3672 50  0000 R CNN
 F 1 "Sense" V 6005 3672 50  0000 R CNN
 F 2 "SamacSys_Parts:1727751" H 6350 4400 50  0001 L CNN
 F 3 "https://www.phoenixcontact.com/pxc-oc-itemdetail-pdf-web/eshop?lineItemType=LineItem&UID=1727751" H 6350 4300 50  0001 L CNN
@@ -1370,8 +1349,6 @@ NoConn ~ 10400 1950
 NoConn ~ 10400 1850
 NoConn ~ 10400 1750
 NoConn ~ 9250 1200
-NoConn ~ 10400 3900
-NoConn ~ 10400 3800
 NoConn ~ 8900 4100
 NoConn ~ 8900 4000
 NoConn ~ 8900 3900
@@ -1381,10 +1358,10 @@ NoConn ~ 8900 3600
 Wire Wire Line
 	5600 4100 5850 4100
 $Comp
-L power:GND #PWR0103
+L power:GND #PWR04
 U 1 1 627CF28F
 P 4600 3800
-F 0 "#PWR0103" H 4600 3550 50  0001 C CNN
+F 0 "#PWR04" H 4600 3550 50  0001 C CNN
 F 1 "GND" H 4605 3627 50  0000 C CNN
 F 2 "" H 4600 3800 50  0001 C CNN
 F 3 "" H 4600 3800 50  0001 C CNN
@@ -1394,10 +1371,10 @@ $EndComp
 Wire Wire Line
 	4600 3800 4700 3800
 $Comp
-L power:+5VP #PWR0104
+L power:+5VP #PWR03
 U 1 1 627CF289
 P 4550 4100
-F 0 "#PWR0104" H 4550 3950 50  0001 C CNN
+F 0 "#PWR03" H 4550 3950 50  0001 C CNN
 F 1 "+5VP" H 4565 4273 50  0000 C CNN
 F 2 "" H 4550 4100 50  0001 C CNN
 F 3 "" H 4550 4100 50  0001 C CNN
@@ -1769,6 +1746,51 @@ Wire Wire Line
 	2400 7500 2400 7350
 Wire Wire Line
 	2400 7350 2550 7350
+$Sheet
+S 6200 1800 850  200 
+U 616B19E6
+F0 "sheet616B19E3" 50
+F1 "file61534325.sch" 50
+F2 "VacOut" I R 7050 1850 50 
+$EndSheet
+Wire Wire Line
+	5200 1350 6050 1350
+Wire Wire Line
+	6050 1350 6050 1050
+Wire Wire Line
+	6050 1050 6200 1050
+Wire Wire Line
+	7050 1050 8050 1050
+Wire Wire Line
+	8100 650  8100 2450
+Wire Wire Line
+	8050 1050 8050 2550
+Wire Wire Line
+	7050 1450 8000 1450
+Wire Wire Line
+	8000 1450 8000 2650
+Wire Wire Line
+	7050 1850 7950 1850
+Wire Wire Line
+	7950 1850 7950 2750
+Wire Wire Line
+	7950 2750 9350 2750
+Text GLabel 10850 3800 2    50   Input ~ 0
+Com3.3TX
+Text GLabel 10850 3900 2    50   Input ~ 0
+Com3.3RX
+Wire Wire Line
+	10150 3800 10850 3800
+Wire Wire Line
+	10150 3900 10850 3900
+Text GLabel 5750 7650 2    50   Input ~ 0
+Com3.3TX
+Text GLabel 5750 7550 2    50   Input ~ 0
+Com3.3RX
+Wire Wire Line
+	5750 7550 5650 7550
+Wire Wire Line
+	5650 7650 5750 7650
 Wire Bus Line
 	8200 4050 8200 4200
 Wire Bus Line
