@@ -6649,7 +6649,7 @@
 
   (footprint "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Horizontal" (layer "F.Cu")
     (tedit 5A19A421) (tstamp 8b92ee1d-d157-4c2a-b64f-3f1862471234)
-    (at 104.845909 -22.773913 180)
+    (at 225.93196 109.729901 180)
     (descr "Through hole angled socket strip, 1x08, 2.54mm pitch, 8.51mm socket length, single row (from Kicad 4.0.7), script generated")
     (tags "Through hole angled socket strip THT 1x08 2.54mm single row")
     (property "Sheetfile" "AMS-Mega2560-Base.kicad_sch")
@@ -10854,7 +10854,7 @@
 
   (footprint "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" (layer "F.Cu")
     (tedit 59FED5CC) (tstamp dc1ab5dc-c5cb-4d5b-ac9f-68d80d010136)
-    (at 96.387378 -107.105043)
+    (at 112.042166 105.987751)
     (descr "Through hole straight pin header, 2x03, 2.54mm pitch, double rows")
     (tags "Through hole pin header THT 2x03 2.54mm double row")
     (property "Sheetfile" "AMS-Mega2560-Base.kicad_sch")
