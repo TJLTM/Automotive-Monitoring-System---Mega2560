@@ -1220,7 +1220,7 @@
     (property "Value" "68uF" (id 1) (at 119.761 63.373 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P2.50mm_P5.00mm" (id 2) (at 116.84 62.23 0)
+    (property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" (id 2) (at 116.84 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 116.84 62.23 0)
