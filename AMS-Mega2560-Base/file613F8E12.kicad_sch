@@ -704,7 +704,13 @@
     (uuid fedb7d4b-8ca2-493c-b9a1-22e781d6d436)
   )
 
-  (label "2-3" (at 196.85 99.06 0)
+  (text "100nF for 100 ohm RTD, 10nF for 1K\nfor Cap between RTDIN- and RTDIN+"
+    (at 137.795 109.855 0)
+    (effects (font (size 1.25 1.25)) (justify left bottom))
+    (uuid 8456274a-a771-43eb-ac89-1bdaeb0518a8)
+  )
+
+  (label "2-3" (at 194.31 99.695 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 49956dd5-35c0-4b9f-8b2a-6f2b8918bd8c)
   )
@@ -712,11 +718,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid a5129eb7-d259-4824-8f60-442feba02c79)
   )
-  (label "2-4" (at 91.44 111.76 0)
+  (label "2-4" (at 92.075 112.395 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid e567c545-204a-4e4a-bfa9-ae48e2366f9a)
   )
-  (label "3" (at 93.98 107.95 0)
+  (label "3" (at 94.615 107.315 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid f66b82ab-c203-4cb4-84ea-abcb2cd50a9c)
   )
