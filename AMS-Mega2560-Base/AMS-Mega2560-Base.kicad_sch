@@ -6776,6 +6776,9 @@
     (path "/5b6db8ad-fd13-496d-891f-6bdb19e86eeb"
       (reference "J32") (unit 1) (value "Conn_01x02") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
     )
+    (path "/00000000-0000-0000-0000-00006152913d/5208ce5a-f101-48c2-a90d-b68c1aad66a3"
+      (reference "J33") (unit 1) (value "Conn_01x02") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+    )
     (path "/00000000-0000-0000-0000-000061493c0e/00000000-0000-0000-0000-0000614d7097"
       (reference "L1") (unit 1) (value "33mH") (footprint "Inductor_THT:L_Axial_L9.5mm_D4.0mm_P15.24mm_Horizontal_Fastron_SMCC")
     )
