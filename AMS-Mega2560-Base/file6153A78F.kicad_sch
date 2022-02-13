@@ -1272,7 +1272,7 @@
     (uuid c07ba97a-6f7c-4a96-b4ac-5292ecd6271d)
     (property "Reference" "IC7" (id 0) (at 209.55 37.9943 0))
     (property "Value" "LTV-846S" (id 1) (at 209.55 40.7694 0))
-    (property "Footprint" "SOP254P1016X460-16N" (id 2) (at 218.44 41.91 0)
+    (property "Footprint" "SamacSys_Parts:SOP254P1016X460-16N" (id 2) (at 218.44 41.91 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Datasheet" "https://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-816_826_846.pdf" (id 3) (at 218.44 44.45 0)
