@@ -1661,7 +1661,7 @@
 
   (footprint "Potentiometer_THT:Potentiometer_Bourns_3296W_Vertical" (layer "F.Cu")
     (tedit 5A3D4994) (tstamp 0d92a859-1d59-414e-b251-9413f9c13c91)
-    (at 120.930208 131.424083)
+    (at 120.850014 131.667982)
     (descr "Potentiometer, vertical, Bourns 3296W, https://www.bourns.com/pdfs/3296.pdf")
     (tags "Potentiometer vertical Bourns 3296W")
     (property "Sheetfile" "AMS-Mega2560-Base.kicad_sch")
@@ -3919,7 +3919,7 @@
 
   (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" (layer "F.Cu")
     (tedit 5AE5139B) (tstamp 51dc9088-949b-44aa-b9b3-fec861e741ea)
-    (at 157.532247 111.055595 -90)
+    (at 153.369046 108.072849 -90)
     (descr "Resistor, Axial_DIN0207 series, Axial, Vertical, pin pitch=2.54mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
     (tags "Resistor Axial_DIN0207 series Axial Vertical pin pitch 2.54mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
     (property "Sheetfile" "file6152913C.kicad_sch")
@@ -4336,7 +4336,7 @@
 
   (footprint "Capacitor_THT:C_Rect_L9.0mm_W3.6mm_P7.50mm_MKT" (layer "F.Cu")
     (tedit 5AE50EF0) (tstamp 590b26b3-23e1-497c-887b-6b1e2feab1f5)
-    (at 150.476577 103.879549 -90)
+    (at 158.411378 104.207199 -90)
     (descr "C, Rect series, Radial, pin pitch=7.50mm, , length*width=9*3.6mm^2, Capacitor, https://en.tdk.eu/inf/20/20/db/fc_2009/MKT_B32560_564.pdf")
     (tags "C Rect series Radial pin pitch 7.50mm  length 9mm width 3.6mm Capacitor")
     (property "Sheetfile" "file6152913C.kicad_sch")
@@ -4626,7 +4626,7 @@
 
   (footprint "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" (layer "F.Cu")
     (tedit 5AE50EF0) (tstamp 5c7b7457-2362-4d39-9b08-119f7428e7ce)
-    (at 116.810288 105.207749 -90)
+    (at 105.777591 104.378775 -90)
     (descr "CP, Radial series, Radial, pin pitch=2.50mm, , diameter=5mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 2.50mm  diameter 5mm Electrolytic Capacitor")
     (property "Sheetfile" "file6152913C.kicad_sch")
@@ -4783,7 +4783,7 @@
 
   (footprint "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" (layer "F.Cu")
     (tedit 5AE50EF0) (tstamp 5dfc2835-2df1-418f-b3eb-ec89be61cf40)
-    (at 112.7509 118.072149 -90)
+    (at 101.718203 117.243175 -90)
     (descr "CP, Radial series, Radial, pin pitch=2.50mm, , diameter=5mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 2.50mm  diameter 5mm Electrolytic Capacitor")
     (property "Sheetfile" "file6152913C.kicad_sch")
@@ -5106,7 +5106,7 @@
 
   (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" (layer "F.Cu")
     (tedit 59FED5CC) (tstamp 61a40458-99e4-4217-832f-685a55ceb2aa)
-    (at 111.442305 130.616589)
+    (at 111.362111 130.860488)
     (descr "Through hole straight pin header, 1x02, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x02 2.54mm single row")
     (property "Sheetfile" "AMS-Mega2560-Base.kicad_sch")
@@ -7148,7 +7148,7 @@
 
   (footprint "SamacSys_Parts:DIP762W56P254L1918H457Q16N" (layer "F.Cu")
     (tedit 0) (tstamp 92aebf34-5cf3-47db-9a1d-fc801627f57a)
-    (at 104.006204 114.024413 180)
+    (at 113.417007 112.593659 180)
     (descr "16 PDIP")
     (tags "Integrated Circuit")
     (property "Description" "TRANSCEIVER MAX 232 CPE MAX232CPE+, Line Transceiver, EIA/TIA-232-E, RS-232, V.24, V.28 2-TX 2-RX 2-TRX, 5 V, 16-Pin PDIP")
@@ -7691,7 +7691,7 @@
 
   (footprint "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" (layer "F.Cu")
     (tedit 5AE50EF0) (tstamp 9ffb5e95-6ff9-4d31-96d4-a9c8ff755dfd)
-    (at 112.7509 111.995134 90)
+    (at 101.718203 111.16616 90)
     (descr "CP, Radial series, Radial, pin pitch=2.50mm, , diameter=5mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 2.50mm  diameter 5mm Electrolytic Capacitor")
     (property "Sheetfile" "file6152913C.kicad_sch")
@@ -9633,7 +9633,7 @@
 
   (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" (layer "F.Cu")
     (tedit 5AE5139B) (tstamp c3a70b12-b74d-45e5-8ba0-3f9a1ecd9784)
-    (at 154.447822 111.055595 -90)
+    (at 150.284621 108.072849 -90)
     (descr "Resistor, Axial_DIN0207 series, Axial, Vertical, pin pitch=2.54mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
     (tags "Resistor Axial_DIN0207 series Axial Vertical pin pitch 2.54mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
     (property "Sheetfile" "file6152913C.kicad_sch")
@@ -11423,7 +11423,7 @@
 
   (footprint "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" (layer "F.Cu")
     (tedit 5AE50EF0) (tstamp f6460571-e5ed-4e6a-9414-6a8804cf108a)
-    (at 116.810288 116.187768 90)
+    (at 105.777591 115.358794 90)
     (descr "CP, Radial series, Radial, pin pitch=2.50mm, , diameter=5mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 2.50mm  diameter 5mm Electrolytic Capacitor")
     (property "Sheetfile" "file6152913C.kicad_sch")
@@ -11874,7 +11874,7 @@
 
   (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" (layer "F.Cu")
     (tedit 59FED5CC) (tstamp fb35a5d2-4827-4538-a692-58c5c8b66997)
-    (at 111.428722 124.361268)
+    (at 111.348528 124.605167)
     (descr "Through hole straight pin header, 1x02, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x02 2.54mm single row")
     (property "Sheetfile" "AMS-Mega2560-Base.kicad_sch")
@@ -12009,7 +12009,7 @@
 
   (footprint "Potentiometer_THT:Potentiometer_Bourns_3296W_Vertical" (layer "F.Cu")
     (tedit 5A3D4994) (tstamp fdf4197e-2e4b-4a4f-bd63-8c871e9a1156)
-    (at 120.923786 125.941298)
+    (at 120.843592 126.185197)
     (descr "Potentiometer, vertical, Bourns 3296W, https://www.bourns.com/pdfs/3296.pdf")
     (tags "Potentiometer vertical Bourns 3296W")
     (property "Sheetfile" "AMS-Mega2560-Base.kicad_sch")
