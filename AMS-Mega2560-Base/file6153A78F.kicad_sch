@@ -461,6 +461,7 @@
     )
   )
 
+
   (junction (at 154.94 97.79) (diameter 0) (color 0 0 0 0)
     (uuid 01686e47-a235-4821-830f-7420314a62c7)
   )
@@ -989,7 +990,7 @@
   (symbol (lib_id "power:+5V") (at 190.5 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 0b31f7e2-0a0e-4232-9990-4273f8d04dd0)
-    (property "Reference" "#PWR?" (id 0) (at 190.5 31.75 0)
+    (property "Reference" "#PWR012" (id 0) (at 190.5 31.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (id 1) (at 190.5 24.3355 0))
@@ -1024,7 +1025,7 @@
   (symbol (lib_id "power:+5V") (at 227.33 29.21 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 0ca5adc1-34a2-4929-bfa6-ce439edcedd8)
-    (property "Reference" "#PWR?" (id 0) (at 227.33 33.02 0)
+    (property "Reference" "#PWR013" (id 0) (at 227.33 33.02 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (id 1) (at 227.33 25.6055 0))
