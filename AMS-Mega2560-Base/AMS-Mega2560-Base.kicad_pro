@@ -556,12 +556,20 @@
       "Sheet6152913C"
     ],
     [
+      "4fa38cd6-152a-4f14-8b73-29a5177e2f36",
+      "BufferedADC1"
+    ],
+    [
       "e01e30bd-73aa-451b-9d34-57e69cccbff4",
       "Outputs"
     ],
     [
       "00000000-0000-0000-0000-0000613f8e13",
       "WaterTemp"
+    ],
+    [
+      "6b0b98f9-1329-4959-9fa9-ce47c8a5340f",
+      "BufferedADC"
     ]
   ],
   "text_variables": {}
