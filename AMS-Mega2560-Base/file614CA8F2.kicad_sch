@@ -1067,7 +1067,7 @@
   )
 
   (no_connect (at 213.995 75.565) (uuid a2b97d53-3195-4227-8011-b624454b9fae))
-  (no_connect (at 213.995 73.025) (uuid a2b97d53-3195-4227-8011-b624454b9fae))
+  (no_connect (at 213.995 73.025) (uuid a2b97d53-3195-4227-8011-b624454b9faf))
 
   (wire (pts (xy 101.6 58.42) (xy 101.6 44.45))
     (stroke (width 0) (type default) (color 0 0 0 0))
