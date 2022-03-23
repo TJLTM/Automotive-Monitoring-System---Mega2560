@@ -3312,7 +3312,7 @@
     (property "Reference" "C19" (id 0) (at 127.1016 36.449 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "C" (id 1) (at 129.413 36.449 0)
+    (property "Value" "3.3nF" (id 1) (at 129.413 36.449 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Capacitor_THT:C_Rect_L9.0mm_W3.6mm_P7.50mm_MKT" (id 2) (at 132.08 38.4048 0)
