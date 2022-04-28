@@ -55,7 +55,7 @@
     (pad_to_mask_clearance 0)
     (aux_axis_origin 103.378 121.666)
     (pcbplotparams
-      (layerselection 0x0000030_80000001)
+      (layerselection 0x0000030_fffffff9)
       (disableapertmacros false)
       (usegerberextensions false)
       (usegerberattributes true)
@@ -83,9 +83,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "")
+      (outputdirectory "../Fab Files/")
     )
   )
 
@@ -11363,9 +11363,9 @@
     (fp_line (start -1.75 0.7) (end -1.75 -1.4) (layer "B.Fab") (width 0.1) (tstamp 86c655d1-9c3d-42bb-8433-540cb773d0d4))
     (fp_line (start -1.05 1.4) (end -1.75 0.7) (layer "B.Fab") (width 0.1) (tstamp 8804a983-b922-4ba8-9a89-9e2272d3e96d))
     (fp_line (start 1.75 1.4) (end -1.05 1.4) (layer "B.Fab") (width 0.1) (tstamp e66d1a21-94a7-413e-9568-de9dd87f14eb))
-    (pad "1" smd roundrect locked (at -1.625 0 90) (size 1.5 2.35) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.166667)
+    (pad "1" smd roundrect locked (at -1.625 0 90) (size 1.5 2.35) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.1666673333)
       (net 68 "Net-(C31-Pad1)") (pintype "passive") (tstamp 1dc02652-d2e4-43b7-ad4a-70d788da90f8))
-    (pad "2" smd roundrect locked (at 1.625 0 90) (size 1.5 2.35) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.166667)
+    (pad "2" smd roundrect locked (at 1.625 0 90) (size 1.5 2.35) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.1666673333)
       (net 1 "GND") (pintype "passive") (tstamp caecf464-77e6-46c8-a053-8b1c86d874d7))
     (model "${KICAD6_3DMODEL_DIR}/Capacitor_Tantalum_SMD.3dshapes/CP_EIA-3528-15_AVX-H.wrl"
       (offset (xyz 0 0 0))
