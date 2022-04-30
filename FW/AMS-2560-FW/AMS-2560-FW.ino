@@ -156,14 +156,11 @@ float ConvertPSItoKPa(float PSI) {
 
 String GetCurrentTime() {
   DateTime now = rtc.now();
-  String DateTimeString = String(now.year())
-                          + "/" + String(now.month())
-                          + "/" + String(now.day())
-                          + "-" + String(now.hour())
-                          + ":" + String(now.minute())
-                          + ":" + String(now.second());
 
-  LastTimeRTCTemp = DateTimeString;
+  char buf1[20];
+  sprintf(buf1, "%02d:%02d:%02d-%02d/%02d/%02d",  now.hour(), now.minute(), now.second(), now.day(), now.month(), now.year());
+  LastTimeRTCTemp = buf1;
+  
   if (Units == 'I') {
     LastRTCTemp = ConvertCtoF(rtc.getTemperature());
   }
