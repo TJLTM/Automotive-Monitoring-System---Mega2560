@@ -36,15 +36,14 @@ const String StatesForOutput[2] = {"Off", "On"};
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 //Spare IO
-/*
-   Spare Inputs are indexed by their number +1 because I don't
-   want to start at zero.
-*/
-const int SpareInputs[] = {2,3,47};
-const int SpareInputSize = sizeof(SpareInputs) / sizeof(int);
-int LastInputState[] = {};
-const int SpareOutputs[] = {4,5,6,7};
-const int SpareOutputSize = sizeof(SpareOutputs) / sizeof(int);
+#define SpareInput1 2
+#define SpareInput2 3
+#define SpareInput3 47
+#define SpareOutput1 4
+#define SpareOutput2 5
+#define SpareOutput3 6 
+#define SpareOutput4 7
+
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 //Analog Sensors 
@@ -74,15 +73,12 @@ const int SpareOutputSize = sizeof(SpareOutputs) / sizeof(int);
 //RTD 
 #define RREF 430.0
 #define RNOMINAL 100.0
-#define RTDCLK 44
-#define RTDDI 48
-#define RTDDO 46
-Adafruit_MAX31865 Water = Adafruit_MAX31865(48, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 LeftSide = Adafruit_MAX31865(46, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 RightSide = Adafruit_MAX31865(44, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 Carb = Adafruit_MAX31865(38, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 FrontOfEngine = Adafruit_MAX31865(42, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 Ambient = Adafruit_MAX31865(40, RTDDI, RTDDO, RTDCLK);
+Adafruit_MAX31865 Water = Adafruit_MAX31865(48);
+Adafruit_MAX31865 LeftSide = Adafruit_MAX31865(46);
+Adafruit_MAX31865 RightSide = Adafruit_MAX31865(44);
+Adafruit_MAX31865 Carb = Adafruit_MAX31865(38);
+Adafruit_MAX31865 FrontOfEngine = Adafruit_MAX31865(42);
+Adafruit_MAX31865 Ambient = Adafruit_MAX31865(40);
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 /*
@@ -108,15 +104,6 @@ void setup() {
   USBSerial.begin(115200);
   inputString.reserve(200);
   inputStringRS232.reserve(200);
-
-  for (int i = 0; i <= SpareInputSize; i++) {
-    pinMode(SpareInputs[i], INPUT);
-    LastInputState[i] = digitalRead(SpareInputs[i]);
-  }
-  for (int i = 0; i <= SpareOutputSize; i++) {
-    pinMode(SpareOutputs[i], OUTPUT);
-  }
-
 }
 
 void loop() {
@@ -167,7 +154,7 @@ String GetCurrentTime() {
   else {
     LastRTCTemp = rtc.getTemperature();
   }
-  return DateTimeString;
+  return buf1;
 }
 
 String GetCurrentDate() {
@@ -185,32 +172,6 @@ void SetUnitsForOutput() {
     TempUnits = "F";
     PressureUnits = "PSI";
   }
-}
-
-void ReadAllInputs() {
-  for (int i = 1; i <= SpareInputSize; i++) {
-    int CurrentInputRead = ReadInput(SpareInputs[i]);
-    if (CurrentInputRead != LastInputState[i]) {
-      LastInputState[i] = CurrentInputRead;
-      if (StreamingDataUSB == true) {
-        PrintInputState(i, CurrentInputRead, 0);
-      }
-      if (StreamingDataRS232 == true) {
-        PrintInputState(i, CurrentInputRead, 1);
-      }
-
-    }
-  }
-}
-
-int ReadInput(int Number) {
-  int Value = digitalRead(SpareInputs[Number]);
-  return Value;
-}
-
-int ReadOutput(int Number) {
-  int Value = digitalRead(SpareOutputs[Number - 1]);
-  return Value;
 }
 
 float ReadAnalog(int Samples, int PinNumber) {
