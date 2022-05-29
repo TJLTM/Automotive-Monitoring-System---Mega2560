@@ -4150,7 +4150,7 @@
     (property "Reference" "R1" (id 0) (at 50.292 128.3716 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "50K" (id 1) (at 50.292 130.683 0)
+    (property "Value" "47K" (id 1) (at 50.292 130.683 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical" (id 2) (at 53.848 129.54 90)
@@ -5617,7 +5617,7 @@
       (reference "Q25") (unit 1) (value "2N7000") (footprint "Package_TO_SOT_THT:TO-92_Inline")
     )
     (path "/3055d43b-07c8-4705-873f-2885a0a28477"
-      (reference "R1") (unit 1) (value "50K") (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical")
+      (reference "R1") (unit 1) (value "47K") (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical")
     )
     (path "/00000000-0000-0000-0000-0000623d3962/a781b66e-4628-4987-b2c2-1aef3a4e7187"
       (reference "R5") (unit 1) (value "1M") (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical")
