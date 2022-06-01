@@ -5353,19 +5353,19 @@
       (reference "C27") (unit 1) (value "0.1uF") (footprint "Capacitor_THT:C_Disc_D7.5mm_W5.0mm_P10.00mm")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-0000614d3042"
-      (reference "C28") (unit 1) (value "120uF") (footprint "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm")
+      (reference "C28") (unit 1) (value "120uF") (footprint "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-0000614d3fe4"
       (reference "C29") (unit 1) (value "0.1uF") (footprint "Capacitor_THT:C_Disc_D7.5mm_W5.0mm_P10.00mm")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-0000614d07c1"
-      (reference "C30") (unit 1) (value "68uF") (footprint "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm")
+      (reference "C30") (unit 1) (value "68uF") (footprint "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-0000615205f8"
       (reference "C31") (unit 1) (value "0.02uF") (footprint "Capacitor_Tantalum_SMD:CP_EIA-3528-15_AVX-H_Pad1.50x2.35mm_HandSolder")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-000061509d30"
-      (reference "C32") (unit 1) (value "1uF") (footprint "Capacitor_THT:CP_Radial_D7.5mm_P2.50mm")
+      (reference "C32") (unit 1) (value "1uF") (footprint "Capacitor_THT:C_Radial_D4.0mm_H5.0mm_P1.50mm")
     )
     (path "/00000000-0000-0000-0000-00006152913d/00000000-0000-0000-0000-0000615c60e1"
       (reference "C36") (unit 1) (value "0.1uF") (footprint "Capacitor_THT:C_Rect_L9.0mm_W3.6mm_P7.50mm_MKT")
@@ -5500,7 +5500,7 @@
       (reference "L3") (unit 1) (value "100mH") (footprint "Inductor_THT:L_Axial_L9.5mm_D4.0mm_P15.24mm_Horizontal_Fastron_SMCC")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-0000614d76e2"
-      (reference "L4") (unit 1) (value "L") (footprint "Inductor_THT:L_Axial_L7.0mm_D3.3mm_P10.16mm_Horizontal_Fastron_MICC")
+      (reference "L4") (unit 1) (value "47uH") (footprint "Inductor_THT:L_Axial_L7.0mm_D3.3mm_P10.16mm_Horizontal_Fastron_MICC")
     )
     (path "/00000000-0000-0000-0000-000056d71773"
       (reference "P1") (unit 1) (value "Power") (footprint "Socket_Arduino_Mega:Socket_Strip_Arduino_1x08")
