@@ -6,48 +6,29 @@
 #include <EEPROM.h>
 
 //-----------------------------------------------------------
-// Serial Communication, UI 
+// Serial Communication, UI
 //-----------------------------------------------------------
 #define USBSerial Serial
 #define RS232 Serial2
 #define GPSSerial Serial3
-String inputString, inputStringRS232 = "";         // a String to hold incoming data from ports
-bool stringComplete, stringCompleteRS232 = false;     // whether the string is complete for each respective port
-
-char* AcceptedCommands[] = {"UNITS?", "DEVICE?", "BATTERY?", "RTCBATTERY?", "TEMPS?", "UNITTEMP?", "WARNING?",
-                            "STREAMING?", "ALLDATA?", "UPDATEALL", "RESETWARNINGS", "RESETALLALARMS",
-                            "TIME?", "REBOOT", "RESET", "STREAMINGONBOOT?"
-                           };
-char* ParameterCommands[] = {"SETUNITS", "SETSTREAMINGDATA", "SETOUTPUT", "READINPUT", "SETTIME", "GETOUTPUT", "READANALOG", 
-                             "SETSTREAMINGONBOOT"
-                            };
 
 //-----------------------------------------------------------
 // System Level
 RTC_DS3231 rtc;
-const String DeviceName = "AMS";
-const String FWVersion = "1.0.0";
-const float ConversionFactor = 5.0 / 1023;
-
-char Units;
-String TempUnits, PressureUnits;
-const String StatesForOutput[2] = {"Off", "On"};
-
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 //Spare IO
-/*
-   Spare Inputs are indexed by their number +1 because I don't
-   want to start at zero.
-*/
-const int SpareInputs[] = {2,3,47};
-const int SpareInputSize = sizeof(SpareInputs) / sizeof(int);
-int LastInputState[] = {};
-const int SpareOutputs[] = {4,5,6,7};
-const int SpareOutputSize = sizeof(SpareOutputs) / sizeof(int);
+#define SpareInput1 2
+#define SpareInput2 3
+#define SpareInput3 47
+#define SpareOutput1 4
+#define SpareOutput2 5
+#define SpareOutput3 6
+#define SpareOutput4 7
+
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-//Analog Sensors 
+//Analog Sensors
 #define VoltageSensor A0
 #define RTCBattery A1
 #define Vacuum1 A2
@@ -63,7 +44,7 @@ const int SpareOutputSize = sizeof(SpareOutputs) / sizeof(int);
 #define SpareBufferedADC A13
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-//Specific IO 
+//Specific IO
 #define OutputSiren 10
 #define LED1 43
 #define LED2 45
@@ -71,208 +52,140 @@ const int SpareOutputSize = sizeof(SpareOutputs) / sizeof(int);
 #define SDCardDetect 34
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-//RTD 
+//RTD
 #define RREF 430.0
 #define RNOMINAL 100.0
-#define RTDCLK 44
-#define RTDDI 48
-#define RTDDO 46
-Adafruit_MAX31865 Water = Adafruit_MAX31865(48, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 LeftSide = Adafruit_MAX31865(46, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 RightSide = Adafruit_MAX31865(44, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 Carb = Adafruit_MAX31865(38, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 FrontOfEngine = Adafruit_MAX31865(42, RTDDI, RTDDO, RTDCLK);
-Adafruit_MAX31865 Ambient = Adafruit_MAX31865(40, RTDDI, RTDDO, RTDCLK);
-//-----------------------------------------------------------
-//-----------------------------------------------------------
-/*
-   All the Stored Values and Times to have states
-   that can be recalled if streaming is turned off
-*/
-//Energy Monitoring
-float LastDCVoltage, LastAltCurrent, LastRTCVoltage = 0.0;
-String LastTimeDCVoltage, LastTimeRTCVoltage = "";
-//Temps
-String LastTimeTemp = "";
-float LastFrontACTemp, LastBackACTemp, LastOutsideTemp, LastBackCabinTemp, LastHallwayTemp, LastFreezerTemp, LastFridgeTemp,
-      LastBathroomTemp = 0.0;
-//RTC TEMP
-float LastRTCTemp = 0.0;
-String LastTimeRTCTemp = "";
-//-----------------------------------------------------------
-//-----------------------------------------------------------
+Adafruit_MAX31865 Water = Adafruit_MAX31865(48);
+Adafruit_MAX31865 LeftSide = Adafruit_MAX31865(46);
+Adafruit_MAX31865 RightSide = Adafruit_MAX31865(44);
+Adafruit_MAX31865 Carb = Adafruit_MAX31865(38);
+Adafruit_MAX31865 FrontOfEngine = Adafruit_MAX31865(42);
+Adafruit_MAX31865 Ambient = Adafruit_MAX31865(40);
 
 void setup() {
   rtc.begin();
   RS232.begin(115200);
   USBSerial.begin(115200);
-  inputString.reserve(200);
-  inputStringRS232.reserve(200);
 
-  for (int i = 0; i <= SpareInputSize; i++) {
-    pinMode(SpareInputs[i], INPUT);
-    LastInputState[i] = digitalRead(SpareInputs[i]);
-  }
-  for (int i = 0; i <= SpareOutputSize; i++) {
-    pinMode(SpareOutputs[i], OUTPUT);
-  }
+  pinMode(SpareInput1, INPUT);
+  pinMode(SpareInput2, INPUT);
+  pinMode(SpareInput3, INPUT);
+  pinMode(SpareOutput1, OUTPUT);
+  pinMode(SpareOutput2, OUTPUT);
+  pinMode(SpareOutput3, OUTPUT);
+  pinMode(SpareOutput4, OUTPUT);
 
-}
-
-void loop() {
+  pinMode(OutputSiren, OUTPUT);
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LoggingIn, INPUT);
+  pinMode(SDCardDetect, INPUT);
   
-
+  Water.begin(MAX31865_3WIRE);
+  LeftSide.begin(MAX31865_3WIRE);
+  RightSide.begin(MAX31865_3WIRE);
+  Carb.begin(MAX31865_3WIRE);
+  FrontOfEngine.begin(MAX31865_3WIRE);
+  Ambient.begin(MAX31865_3WIRE);
 }
 
-
-//------------------------------------------------------------------
-//Helper functions
-//------------------------------------------------------------------
-void(* resetFunc) (void) = 0;  // declare reset fuction at address 0
-
-void RebootDisBitch() {
-  BroadCast("%R," + GetCurrentTime() + ",Rebooting");
-  delay(2000);
-  resetFunc();
+void loop(){
+  OutputTest();
+  InputTest();
+  RTDTest();
+  LCDTest();
+  RTCTest();
+  ADCTesting();
 }
 
-void MIBFLASH() {
-  BroadCast("%R," + GetCurrentTime() + ",Reseting wait for reboot Message");
-  for (int i = 0 ; i < EEPROM.length() ; i++) {
-    EEPROM.write(i, 0);
-  }
-  RebootDisBitch();
+void ADCTesting(){
+//VoltageSensor
+//RTCBattery
+//Vacuum1
+//Vacuum
+//AtlernatorCurrent
+//FuelPresssure1
+//FuelPressure2
+//AFR1
+//AFR2
+//RPM
+//GPSBattery
+//ThrottlePosition
+//SpareBufferedADC
 }
 
-float ConvertCtoF(float C) {
-  float F = (1.8 * C) + 32;
-  return F;
+void RTCTest(){
+  
 }
 
-float ConvertPSItoKPa(float PSI) {
-  float KPA = 6.8947572932 * PSI;
-  return KPA;
+void LCDTest(){
+  
 }
 
-String GetCurrentTime() {
-  DateTime now = rtc.now();
-  String DateTimeString = String(now.year())
-                          + "/" + String(now.month())
-                          + "/" + String(now.day())
-                          + "-" + String(now.hour())
-                          + ":" + String(now.minute())
-                          + ":" + String(now.second());
-
-  LastTimeRTCTemp = DateTimeString;
-  if (Units == 'I') {
-    LastRTCTemp = ConvertCtoF(rtc.getTemperature());
-  }
-  else {
-    LastRTCTemp = rtc.getTemperature();
-  }
-  return DateTimeString;
+void RTDTest(){
+  
 }
 
-String GetCurrentDate() {
-  DateTime now = rtc.now();
-  String CurrentDate = String(now.year()) + String(now.month()) + String(now.day());
-  return CurrentDate;
+void InputTest(){
+  Serial.println("Reading SpareInput1:" + String(digitalRead(SpareInput1)));
+  delay(5000);
+  Serial.println("Reading SpareInput2:" + String(digitalRead(SpareInput2)));
+  delay(5000);
+  Serial.println("Reading SpareInput3:" + String(digitalRead(SpareInput3)));
+  delay(5000);
+  Serial.println("Reading LoggingIn:" + String(digitalRead(LoggingIn)));
+  delay(5000);
+  Serial.println("Reading SDCardDetect:" + String(digitalRead(SDCardDetect)));
+  delay(5000);
 }
 
-void SetUnitsForOutput() {
-  if (Units == "M") {
-    TempUnits = "C";
-    PressureUnits = "KPa";
-  }
-  else {
-    TempUnits = "F";
-    PressureUnits = "PSI";
-  }
-}
+void OutputTest(){
+  Serial.println("setting SpareOutput1 HIGH");
+  digitalWrite(SpareOutput1,HIGH);
+  delay(2500);
+  Serial.println("setting SpareOutput1 LOW");
+  digitalWrite(SpareOutput1,HIGH);
+  delay(2500);
 
-void ReadAllInputs() {
-  for (int i = 1; i <= SpareInputSize; i++) {
-    int CurrentInputRead = ReadInput(SpareInputs[i]);
-    if (CurrentInputRead != LastInputState[i]) {
-      LastInputState[i] = CurrentInputRead;
-      if (StreamingDataUSB == true) {
-        PrintInputState(i, CurrentInputRead, 0);
-      }
-      if (StreamingDataRS232 == true) {
-        PrintInputState(i, CurrentInputRead, 1);
-      }
+  Serial.println("setting SpareOutput2 HIGH");
+  digitalWrite(SpareOutput2,HIGH);
+  delay(2500);
+  Serial.println("setting SpareOutput2 LOW");
+  digitalWrite(SpareOutput2,HIGH);
+  delay(2500);
 
-    }
-  }
-}
+  Serial.println("setting SpareOutput3 HIGH");
+  digitalWrite(SpareOutput3,HIGH);
+  delay(2500);
+  Serial.println("setting SpareOutput3 LOW");
+  digitalWrite(SpareOutput3,HIGH);
+  delay(2500);
 
-int ReadInput(int Number) {
-  int Value = digitalRead(SpareInputs[Number]);
-  return Value;
-}
+  Serial.println("setting SpareOutput4 HIGH");
+  digitalWrite(SpareOutput4,HIGH);
+  delay(2500);
+  Serial.println("setting SpareOutput4 LOW");
+  digitalWrite(SpareOutput4,HIGH);
+  delay(2500);
 
-int ReadOutput(int Number) {
-  int Value = digitalRead(SpareOutputs[Number - 1]);
-  return Value;
-}
+  Serial.println("setting OutputSiren HIGH");
+  digitalWrite(OutputSiren,HIGH);
+  delay(2500);
+  Serial.println("setting OutputSiren LOW");
+  digitalWrite(OutputSiren,HIGH);
+  delay(2500);
 
-float ReadAnalog(int Samples, int PinNumber) {
-  long Sum = 0;
-  float Value = 0;
-  for (int x = 0; x < Samples; x++) {
-    Sum = Sum + analogRead(PinNumber);
-  }
-  Value = (Sum / Samples);
-  return Value;
-}
+  Serial.println("setting LED1 HIGH");
+  digitalWrite(LED1,HIGH);
+  delay(2500);
+  Serial.println("setting LED1 LOW");
+  digitalWrite(LED1,HIGH);
+  delay(2500);
 
-
-//------------------------------------------------------------------
-//Serial
-//------------------------------------------------------------------
-/*
-  SerialEvent occurs whenever a new data comes in the hardware serial RX. This
-  routine is run between each time loop() runs, so using delay inside loop can
-  delay response. Multiple bytes of data may be available.
-*/
-void serialEvent() {
-  while (USBSerial.available()) {
-    // get the new byte:
-    char inChar = (char)USBSerial.read();
-    // add it to the inputString:
-    inputString += inChar;
-    // if the incoming character is a carriage return, set a flag so the main loop can
-    // do something about it:
-    if (inChar == '\r') {
-      stringComplete = true;
-    }
-  }
-}
-
-void serialRS232() {
-  while (RS232.available()) {
-    // get the new byte:
-    char inChar = (char)RS232.read();
-    // add it to the inputString:
-    inputStringRS232 += inChar;
-    // if the incoming character is a carriage return, set a flag so the main loop can
-    // do something about it:
-    if (inChar == '\r') {
-      stringCompleteRS232 = true;
-    }
-  }
-}
-
-void BroadCast(String Message) {
-  SendItOut(Message, 0);
-  SendItOut(Message, 1);
-}
-
-void SendItOut(String Message, int WhichPort) {
-  if (WhichPort == 0) {
-    USBSerial.println(Message);
-  }
-  else {
-    RS232.println(Message);
-  }
+  Serial.println("setting LED2 HIGH");
+  digitalWrite(LED2,HIGH);
+  delay(2500);
+  Serial.println("setting LED2 LOW");
+  digitalWrite(LED2,HIGH);
+  delay(2500);  
 }
