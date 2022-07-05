@@ -1,6 +1,9 @@
 #include <Adafruit_GPS.h>
+<<<<<<< HEAD
 #include <Adafruit_PMTK.h>
 #include <NMEA_data.h>
+=======
+>>>>>>> refs/remotes/gitlab/Hardware_Fixes
 #include <Wire.h>
 #include <Adafruit_MAX31865.h>
 #include <SPI.h>
@@ -15,46 +18,11 @@
 #define USBSerial Serial
 #define RS232P1 Serial1
 #define RS232P2 Serial2
-char* AcceptedCommands[] = {"UNITS?", "DEVICE?", "BATTERY?", "RTCBATTERY?", "TEMPS?", "UNITTEMP?", "WARNING?",
-                            "STREAMING?", "ALLDATA?", "UPDATEALL", "RESETWARNINGS", "RESETALLALARMS",
-                            "TIME?", "REBOOT", "RESET", "STREAMINGONBOOT?", "STATUS?", "PORT?", "ALARM?"
-                           };
-char* ParameterCommands[] = {"SETUNITS", "SETSTREAMINGDATA", "SETTIME", "SETSTREAMINGONBOOT",
-                            };
-String inputString, inputStringRS232P1, inputStringRS232P2  = "";         // a String to hold incoming data from ports
-bool stringComplete, stringCompleteRS232P1, stringCompleteRS232P2 = false;     // whether the string is complete for each respective port
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 // System Level
 RTC_DS3231 rtc;
-const String DeviceName = "AMS";
-const String FWVersion = "0.0.1";
 const float ConversionFactor = 5.0 / 1023;
-bool WarningActive, AlarmActive = false;
-int TotalWarnings = 7;
-int ArrayOfWarnings[] = {};
-long TempTimer, WarningBlinkTimer;
-bool StreamingDataUSB, StreamingDataRS232 = false;
-char Units;
-String TempUnits, PressureUnits;
-//-----------------------------------------------------------
-/*
-   All the Stored Values and Times to have states
-   that can be recalled if streaming is turned off
-*/
-//Fuel Pressure
-float LastFuel1, LastFuel2 = 0.0;
-String LastTimeFuel = "";
-//Battery Monitoring
-float LastDCVoltage, LastRTCVoltage = 0.0;
-String LastTimeDCVoltage, LastTimeRTCVoltage = "";
-// Temps
-String LastTimeTemp = "";
-float LastCarbTemp, LastAmbientTemp, LastFrontOfEngineTemp, LastRightSideTemp, LastLeftSideTemp, LastWaterTemp = 0.0;
-float LastRTCTemp = 0.0;
-String LastTimeRTCTemp = "";
-//-----------------------------------------------------------
-//-----------------------------------------------------------
 //RTD sensors
 #define RTDWaterCS 48
 #define RTDCarbCS 38
@@ -111,6 +79,7 @@ Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
 #define RPMEnable 41
 //-----------------------------------------------------------
 //-----------------------------------------------------------
+#define SDCardDetectPin 36
 
 void setup() {
 rtc.begin();
@@ -129,6 +98,7 @@ rtc.begin();
   pinMode(SpareInput2,INPUT);
   pinMode(SpareInput3,INPUT);
   pinMode(LoggingInput,INPUT);
+  pinMode(SDCardDetectPin,INPUT);
 
   //RTD
   pinMode(RTDWaterCS, OUTPUT);
@@ -153,15 +123,26 @@ rtc.begin();
 }
 
 void loop() {
-  //OutputTesting();
+ //OutputTesting();
  //InputTesting();
  //OilPressureTesting();
  //AFRTesting();
  //FuelPressureTesting();
  //AltCurrentTesting();
+<<<<<<< HEAD
  
  //RPMTesting();
  RTCBattery();
+=======
+ //VoltageSensorTesting();
+ //VacuumTesting();
+ //ThrottlePositionTesting();
+ //SpareADCTestin();
+ //RPMTesting();
+ //SDCardTesting();
+ //GPSTesting();
+ //RTCBATTESTING();
+>>>>>>> refs/remotes/gitlab/Hardware_Fixes
 }
 
 void OutputTesting(){
@@ -235,57 +216,114 @@ void InputTesting(){
   delay(2500);
 }
 
+float ReadAnalog(int Samples, int PinNumber) {
+  long Sum = 0;
+  float Value = 0;
+  for (int x = 0; x < Samples; x++) {
+    Sum = Sum + analogRead(PinNumber);
+  }
+  Value = (Sum / Samples);
+  return Value;
+}
+
 void OilPressureTesting(){
-  
+  Serial.print("OilPressurePin:");
+  Serial.println(ReadAnalog(50,OilPressurePin));
+  delay(1000);
 }
 
 void AFRTesting(){
-  
+  Serial.print("AFR1:");
+  Serial.println(ReadAnalog(50,AFR1));
+  delay(1000);
+  Serial.print("AFR2:");
+  Serial.println(ReadAnalog(50,AFR2));
+  delay(1000);
 }
 
 void FuelPressureTesting(){
-  
+  Serial.print("FuelPressure1:");
+  Serial.println(ReadAnalog(50,FuelPressure1));
+  delay(1000);
+  Serial.print("FuelPressure2:");
+  Serial.println(ReadAnalog(50,FuelPressure2));
+  delay(1000);
 }
 
 void AltCurrentTesting(){
-  
+  Serial.print("CurrentSensorPin:");
+  Serial.println(ReadAnalog(50,CurrentSensorPin));
+  delay(1000);
 }
 
 void VoltageSensorTesting(){
-  
+  Serial.print("VoltageSensor:");
+  Serial.println(ReadAnalog(50,VoltageSensor));
+  delay(1000);
 }
 
 void VacuumTesting(){
-  
+  Serial.print("Vacuum1:");
+  Serial.println(ReadAnalog(50,Vacuum1));
+  delay(1000);
+  Serial.print("Vacuum2:");
+  Serial.println(ReadAnalog(50,Vacuum2));
+  delay(1000);
 }
 
 void ThrottlePositionTesting(){
-  
+  Serial.print("ThrottlePosition:");
+  Serial.println(ReadAnalog(50,ThrottlePosition));
+  delay(1000);
 }
 
 void SpareADCTestin(){
-  
+  Serial.print("SpareBufferedADC:");
+  Serial.println(ReadAnalog(50,SpareBufferedADC));
+  delay(1000);
 }
 
 void RPMTesting(){
   digitalWrite(RPMEnable,HIGH);
   delay(1000);
+<<<<<<< HEAD
   //digitalWrite(RPMEnable,LOW);
   //delay(1000);
   
   
+=======
+  digitalWrite(RPMEnable,LOW);
+  delay(1000);
+  
+  Serial.print("RPMADC:");
+  Serial.println(ReadAnalog(50,RPMADC));
+  delay(1000);
+>>>>>>> refs/remotes/gitlab/Hardware_Fixes
 }
 
 void SDCardTesting(){
-  
+  Serial.print("SD Detect:");
+  Serial.println(digitalRead(SDCardDetectPin));
 }
 
 void GPSTesting(){
+<<<<<<< HEAD
   Serial.print("GPS Battery:");
   Serial.println(analogRead(GPSBattPin)*ConversionFactor);
   delay(1000);
   
   
+=======
+  Serial.print("GPSBatt:");
+  Serial.println(ReadAnalog(50,GPSBatt));
+  delay(1000);
+}
+
+void RTCBATTESTING(){
+  Serial.print("RTCBattery:");
+  Serial.println(ReadAnalog(50,RTCBattery));
+  delay(1000);
+>>>>>>> refs/remotes/gitlab/Hardware_Fixes
 }
 
 void RTCBattery(){
