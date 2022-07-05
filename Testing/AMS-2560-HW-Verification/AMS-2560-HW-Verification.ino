@@ -1,8 +1,12 @@
+#include <Adafruit_GPS.h>
+#include <Adafruit_PMTK.h>
+#include <NMEA_data.h>
 #include <Wire.h>
 #include <Adafruit_MAX31865.h>
 #include <SPI.h>
 #include <RTClib.h>
 #include <EEPROM.h>
+
 
 
 //-----------------------------------------------------------
@@ -87,19 +91,19 @@ Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 // ADC Sensors
-#define FuelPressure1 A5
-#define FuelPressure2 A6
-#define VoltageSensor A0
-#define RTCBattery A1
-#define Vacuum1 A2
-#define Vacuum2 A3
+#define FuelPressure1Pin A5
+#define FuelPressure2Pin A6
+#define VoltageSensorPin A0
+#define RTCBatteryPin A1
+#define Vacuum1Pin A2
+#define Vacuum2Pin A3
 #define CurrentSensorPin A4
 #define OilPressurePin A7
-#define AFR1 A8
-#define AFR2 A9
-#define GPSBatt A11
-#define ThrottlePosition A12
-#define SpareBufferedADC A13
+#define AFR1Pin A8
+#define AFR2Pin A9
+#define GPSBattPin A11
+#define ThrottlePositionPin A12
+#define SpareBufferedADCPin A13
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 // RPM
@@ -156,7 +160,8 @@ void loop() {
  //FuelPressureTesting();
  //AltCurrentTesting();
  
- RPMTesting();
+ //RPMTesting();
+ RTCBattery();
 }
 
 void OutputTesting(){
@@ -265,8 +270,10 @@ void SpareADCTestin(){
 void RPMTesting(){
   digitalWrite(RPMEnable,HIGH);
   delay(1000);
-  digitalWrite(RPMEnable,LOW);
-  delay(1000);
+  //digitalWrite(RPMEnable,LOW);
+  //delay(1000);
+  
+  
 }
 
 void SDCardTesting(){
@@ -274,5 +281,15 @@ void SDCardTesting(){
 }
 
 void GPSTesting(){
+  Serial.print("GPS Battery:");
+  Serial.println(analogRead(GPSBattPin)*ConversionFactor);
+  delay(1000);
   
+  
+}
+
+void RTCBattery(){
+  Serial.print("RTCBattery Voltage:");
+  Serial.println(analogRead(RTCBatteryPin)*ConversionFactor);
+  delay(1000);
 }
