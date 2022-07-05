@@ -1,9 +1,6 @@
 #include <Adafruit_GPS.h>
-<<<<<<< HEAD
 #include <Adafruit_PMTK.h>
 #include <NMEA_data.h>
-=======
->>>>>>> refs/remotes/gitlab/Hardware_Fixes
 #include <Wire.h>
 #include <Adafruit_MAX31865.h>
 #include <SPI.h>
@@ -86,9 +83,6 @@ rtc.begin();
   RS232P1.begin(115200);
   RS232P2.begin(115200);
   USBSerial.begin(115200);
-  inputString.reserve(100);
-  inputStringRS232P1.reserve(100);
-  inputStringRS232P2.reserve(100);
 
   pinMode(AlarmOut, OUTPUT);
   pinMode(LED1, OUTPUT);
@@ -129,11 +123,7 @@ void loop() {
  //AFRTesting();
  //FuelPressureTesting();
  //AltCurrentTesting();
-<<<<<<< HEAD
- 
  //RPMTesting();
- RTCBattery();
-=======
  //VoltageSensorTesting();
  //VacuumTesting();
  //ThrottlePositionTesting();
@@ -142,7 +132,6 @@ void loop() {
  //SDCardTesting();
  //GPSTesting();
  //RTCBATTESTING();
->>>>>>> refs/remotes/gitlab/Hardware_Fixes
 }
 
 void OutputTesting(){
@@ -234,19 +223,19 @@ void OilPressureTesting(){
 
 void AFRTesting(){
   Serial.print("AFR1:");
-  Serial.println(ReadAnalog(50,AFR1));
+  Serial.println(ReadAnalog(50,AFR1Pin));
   delay(1000);
   Serial.print("AFR2:");
-  Serial.println(ReadAnalog(50,AFR2));
+  Serial.println(ReadAnalog(50,AFR2Pin));
   delay(1000);
 }
 
 void FuelPressureTesting(){
   Serial.print("FuelPressure1:");
-  Serial.println(ReadAnalog(50,FuelPressure1));
+  Serial.println(ReadAnalog(50,FuelPressure1Pin));
   delay(1000);
   Serial.print("FuelPressure2:");
-  Serial.println(ReadAnalog(50,FuelPressure2));
+  Serial.println(ReadAnalog(50,FuelPressure2Pin));
   delay(1000);
 }
 
@@ -258,47 +247,40 @@ void AltCurrentTesting(){
 
 void VoltageSensorTesting(){
   Serial.print("VoltageSensor:");
-  Serial.println(ReadAnalog(50,VoltageSensor));
+  Serial.println(ReadAnalog(50,VoltageSensorPin));
   delay(1000);
 }
 
 void VacuumTesting(){
   Serial.print("Vacuum1:");
-  Serial.println(ReadAnalog(50,Vacuum1));
+  Serial.println(ReadAnalog(50,Vacuum1Pin));
   delay(1000);
   Serial.print("Vacuum2:");
-  Serial.println(ReadAnalog(50,Vacuum2));
+  Serial.println(ReadAnalog(50,Vacuum2Pin));
   delay(1000);
 }
 
 void ThrottlePositionTesting(){
   Serial.print("ThrottlePosition:");
-  Serial.println(ReadAnalog(50,ThrottlePosition));
+  Serial.println(ReadAnalog(50,ThrottlePositionPin));
   delay(1000);
 }
 
 void SpareADCTestin(){
   Serial.print("SpareBufferedADC:");
-  Serial.println(ReadAnalog(50,SpareBufferedADC));
+  Serial.println(ReadAnalog(50,SpareBufferedADCPin));
   delay(1000);
 }
 
 void RPMTesting(){
-  digitalWrite(RPMEnable,HIGH);
-  delay(1000);
-<<<<<<< HEAD
-  //digitalWrite(RPMEnable,LOW);
-  //delay(1000);
-  
-  
-=======
   digitalWrite(RPMEnable,LOW);
   delay(1000);
   
   Serial.print("RPMADC:");
   Serial.println(ReadAnalog(50,RPMADC));
   delay(1000);
->>>>>>> refs/remotes/gitlab/Hardware_Fixes
+//digitalWrite(RPMEnable,LOW);
+  //delay(1000);
 }
 
 void SDCardTesting(){
@@ -307,27 +289,13 @@ void SDCardTesting(){
 }
 
 void GPSTesting(){
-<<<<<<< HEAD
-  Serial.print("GPS Battery:");
-  Serial.println(analogRead(GPSBattPin)*ConversionFactor);
-  delay(1000);
-  
-  
-=======
   Serial.print("GPSBatt:");
-  Serial.println(ReadAnalog(50,GPSBatt));
+  Serial.println(ReadAnalog(50,GPSBattPin));
   delay(1000);
 }
 
 void RTCBATTESTING(){
   Serial.print("RTCBattery:");
-  Serial.println(ReadAnalog(50,RTCBattery));
-  delay(1000);
->>>>>>> refs/remotes/gitlab/Hardware_Fixes
-}
-
-void RTCBattery(){
-  Serial.print("RTCBattery Voltage:");
-  Serial.println(analogRead(RTCBatteryPin)*ConversionFactor);
+  Serial.println(ReadAnalog(50,RTCBatteryPin));
   delay(1000);
 }
