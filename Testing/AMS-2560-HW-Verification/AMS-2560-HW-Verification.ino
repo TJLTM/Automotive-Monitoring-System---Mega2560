@@ -125,7 +125,7 @@ void loop() {
  //AFRTesting();
  //FuelPressureTesting();
  //AltCurrentTesting();
- //RPMTesting();
+ RPMTesting();
  //VoltageSensorTesting();
  //VacuumTesting();
  //ThrottlePositionTesting();
@@ -274,11 +274,15 @@ void SpareADCTestin(){
 }
 
 void RPMTesting(){
-  digitalWrite(RPMEnable,LOW);
+  digitalWrite(RPMEnable,HIGH);
   delay(1000);
   
   Serial.print("RPMADC:");
-  Serial.println(ReadAnalog(50,RPMADC));
+  int Reading = ReadAnalog(50,RPMADC);
+  Serial.print(Reading);
+  Serial.print(" : ");
+  Serial.println(Reading*ConversionFactor);
+  
   delay(1000);
 //digitalWrite(RPMEnable,LOW);
   //delay(1000);
