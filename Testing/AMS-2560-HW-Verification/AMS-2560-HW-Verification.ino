@@ -76,7 +76,8 @@ Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
 #define RPMEnable 41
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-#define SDCardDetectPin 36
+#define SDCardDetectPin 34
+#define SDCS 36
 
 void setup() {
 rtc.begin();
@@ -92,6 +93,7 @@ rtc.begin();
   pinMode(SpareInput2,INPUT);
   pinMode(SpareInput3,INPUT);
   pinMode(LoggingInput,INPUT);
+  
   pinMode(SDCardDetectPin,INPUT);
 
   //RTD
@@ -128,7 +130,6 @@ void loop() {
  //VacuumTesting();
  //ThrottlePositionTesting();
  //SpareADCTestin();
- //RPMTesting();
  //SDCardTesting();
  //GPSTesting();
  //RTCBATTESTING();
