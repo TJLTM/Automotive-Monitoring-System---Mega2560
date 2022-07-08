@@ -1,62 +1,117 @@
-#include <LiquidCrystal_I2C.h>
+#include <Adafruit_GPS.h>
+#include <Adafruit_PMTK.h>
+#include <NMEA_data.h>
 #include <Wire.h>
 #include <Adafruit_MAX31865.h>
 #include <SPI.h>
 #include <RTClib.h>
 
+
+//-----------------------------------------------------------
+// Serial Communication
+//-----------------------------------------------------------
 #define USBSerial Serial
-#define RS232 Serial2
-
+#define RS232P1 Serial1
+#define RS232P2 Serial2
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+// System Level
 RTC_DS3231 rtc;
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
-
-//Spare IO
+const float ConversionFactor = 5.0 / 1023;
+//RTD sensors
+#define RTDWaterCS 48
+#define RTDCarbCS 38
+#define RTDAmbientCS 40
+#define RTDLSCS 46
+#define RTDRSCS 44
+#define RTDFrontCS 42
+#define RREF      430.0
+#define RNOMINAL  100.0
+Adafruit_MAX31865 RTDWater = Adafruit_MAX31865(RTDWaterCS);
+Adafruit_MAX31865 RTDCarb = Adafruit_MAX31865(RTDCarbCS);
+Adafruit_MAX31865 RTDAmbient = Adafruit_MAX31865(RTDAmbientCS);
+Adafruit_MAX31865 RTDLS = Adafruit_MAX31865(RTDLSCS);
+Adafruit_MAX31865 RTDRS = Adafruit_MAX31865(RTDRSCS);
+Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+//Alarm
+#define AlarmOut 8
+#define LED1 43
+#define LED2 45
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+// Spare Inputs Outputs and Analog
+#define LoggingInput 49
 #define SpareInput1 2
 #define SpareInput2 3
 #define SpareInput3 47
+
 #define SpareOutput1 4
 #define SpareOutput2 5
 #define SpareOutput3 6
 #define SpareOutput4 7
-
-//Analog Sensors
-#define VoltageSensor A0
-#define RTCBattery A1
-#define Vacuum1 A2
-#define Vacuum A3
-#define AtlernatorCurrent A4
-#define FuelPresssure1 A5
-#define FuelPressure2 A6
-#define AFR1 A8
-#define AFR2 A9
-#define RPM A10
-#define GPSBattery A11
-#define ThrottlePosition A12
-#define SpareBufferedADC A13
-//Specific IO
-#define OutputSiren 10
-#define LED1 43
-#define LED2 45
-#define LoggingIn 49
-#define SDCardDetect 34
-//RTD
-#define RREF 430.0
-#define RNOMINAL 100.0
-Adafruit_MAX31865 Water = Adafruit_MAX31865(48);
-Adafruit_MAX31865 LeftSide = Adafruit_MAX31865(46);
-Adafruit_MAX31865 RightSide = Adafruit_MAX31865(44);
-Adafruit_MAX31865 Carb = Adafruit_MAX31865(38);
-Adafruit_MAX31865 FrontOfEngine = Adafruit_MAX31865(42);
-Adafruit_MAX31865 Ambient = Adafruit_MAX31865(40);
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+// ADC Sensors
+#define FuelPressure1Pin A5
+#define FuelPressure2Pin A6
+#define VoltageSensorPin A0
+#define RTCBatteryPin A1
+#define Vacuum1Pin A2
+#define Vacuum2Pin A3
+#define CurrentSensorPin A4
+#define OilPressurePin A7
+#define AFR1Pin A8
+#define AFR2Pin A9
+#define GPSBattPin A11
+#define ThrottlePositionPin A12
+#define SpareBufferedADCPin A13
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+// RPM
+#define RPMADC A10
+#define RPMEnable 41
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+#define SDCardDetectPin 34
+#define SDCS 36
 
 void setup() {
   rtc.begin();
-  RS232.begin(115200);
+  RS232P1.begin(115200);
+  RS232P2.begin(115200);
   USBSerial.begin(115200);
 
-  lcd.init();
-  lcd.backlight();
+  pinMode(AlarmOut, OUTPUT);
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+
+  pinMode(SpareInput1, INPUT);
+  pinMode(SpareInput2, INPUT);
+  pinMode(SpareInput3, INPUT);
+  pinMode(LoggingInput, INPUT);
+
+  pinMode(SDCardDetectPin, INPUT);
+
+  //RTD
+  pinMode(RTDWaterCS, OUTPUT);
+  pinMode(RTDCarbCS, OUTPUT);
+  pinMode(RTDAmbientCS, OUTPUT);
+  pinMode(RTDLSCS, OUTPUT);
+  pinMode(RTDRSCS, OUTPUT);
+  pinMode(RTDFrontCS, OUTPUT);
+  /*
+      Please Reference Adafruit_MAX31865
+      docs for setup of these boards if
+      you are going to use 4 or 2 wire
+  */
+  RTDWater.begin(MAX31865_3WIRE);
+  RTDCarb.begin(MAX31865_3WIRE);
+  RTDAmbient.begin(MAX31865_3WIRE);
+  RTDLS.begin(MAX31865_3WIRE);
+  RTDRS.begin(MAX31865_3WIRE);
+  RTDFront.begin(MAX31865_3WIRE);
 
   pinMode(SpareInput1, INPUT);
   pinMode(SpareInput2, INPUT);
@@ -65,199 +120,191 @@ void setup() {
   pinMode(SpareOutput2, OUTPUT);
   pinMode(SpareOutput3, OUTPUT);
   pinMode(SpareOutput4, OUTPUT);
-
-  pinMode(OutputSiren, OUTPUT);
-  pinMode(LED1, OUTPUT);
-  pinMode(LED2, OUTPUT);
-  pinMode(LoggingIn, INPUT);
-  pinMode(SDCardDetect, INPUT);
-  
-  Water.begin(MAX31865_3WIRE);
-  LeftSide.begin(MAX31865_3WIRE);
-  RightSide.begin(MAX31865_3WIRE);
-  Carb.begin(MAX31865_3WIRE);
-  FrontOfEngine.begin(MAX31865_3WIRE);
-  Ambient.begin(MAX31865_3WIRE);
 }
 
-void loop(){
-  OutputTest();
-  InputTest();
-  RTDTest();
-  LCDTest();
-  RTCTest();
-  ADCTesting();
+void loop() {
+  //OutputTesting();
+  //InputTesting();
+  //OilPressureTesting();
+  //AFRTesting();
+  //FuelPressureTesting();
+  //AltCurrentTesting();
+  //RPMTesting();
+  //VoltageSensorTesting();
+  //VacuumTesting();
+  //ThrottlePositionTesting();
+  //SpareADCTestin();
+  //SDCardTesting();
+  //GPSTesting();
+  //RTCBATTESTING();
 }
 
-void ADCTesting(){
-Serial.println("VoltageSensor:" +String(ReadVoltage(VoltageSensor)));
-delay(5000);
-Serial.println("RTCBattery:" +String(ReadVoltage(RTCBattery)));
-delay(5000);
-Serial.println("Vacuum1:" +String(ReadVoltage(Vacuum1)));
-delay(5000);
-Serial.println("Vacuum:" +String(ReadVoltage(Vacuum)));
-delay(5000);
-Serial.println("AtlernatorCurrent:" +String(ReadVoltage(AtlernatorCurrent)));
-delay(5000);
-Serial.println("FuelPresssure1:" +String(ReadVoltage(FuelPresssure1)));
-delay(5000);
-Serial.println("FuelPressure2:" +String(ReadVoltage(FuelPressure2)));
-delay(5000);
-Serial.println("AFR1:" +String(ReadVoltage(AFR1)));
-delay(5000);
-Serial.println("AFR2:" +String(ReadVoltage(AFR2)));
-delay(5000);
-Serial.println("RPM:" +String(ReadVoltage(RPM)));
-delay(5000);
-Serial.println("GPSBattery:" +String(ReadVoltage(GPSBattery)));
-delay(5000);
-Serial.println("ThrottlePosition:" +String(ReadVoltage(ThrottlePosition)));
-delay(5000);
-Serial.println("SpareBufferedADC:" +String(ReadVoltage(SpareBufferedADC)));
-delay(5000);
-}
-
-float ReadVoltage(int Pin){
-  return analogRead(Pin)*(5.0/1023);
-}
-
-void RTCTest(){
-    DateTime now = rtc.now();
-
-    Serial.print(now.year(), DEC);
-    Serial.print('/');
-    Serial.print(now.month(), DEC);
-    Serial.print('/');
-    Serial.print(now.day(), DEC);
-    Serial.print(" (");
-    Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
-    Serial.print(") ");
-    Serial.print(now.hour(), DEC);
-    Serial.print(':');
-    Serial.print(now.minute(), DEC);
-    Serial.print(':');
-    Serial.print(now.second(), DEC);
-    Serial.println();
-
-    Serial.print(" since midnight 1/1/1970 = ");
-    Serial.print(now.unixtime());
-    Serial.print("s = ");
-    Serial.print(now.unixtime() / 86400L);
-    Serial.println("d");
-
-    // calculate a date which is 7 days, 12 hours, 30 minutes, 6 seconds into the future
-    DateTime future (now + TimeSpan(7,12,30,6));
-
-    Serial.print(" now + 7d + 12h + 30m + 6s: ");
-    Serial.print(future.year(), DEC);
-    Serial.print('/');
-    Serial.print(future.month(), DEC);
-    Serial.print('/');
-    Serial.print(future.day(), DEC);
-    Serial.print(' ');
-    Serial.print(future.hour(), DEC);
-    Serial.print(':');
-    Serial.print(future.minute(), DEC);
-    Serial.print(':');
-    Serial.print(future.second(), DEC);
-    Serial.println();
-
-    Serial.print("Temperature: ");
-    Serial.print(rtc.getTemperature());
-    Serial.println(" C");
-
-    Serial.println();
-}
-
-void LCDTest(){
-  lcd.setCursor(0,2);
-  lcd.print(millis());
-}
-
-void RTDTest(){
-  uint16_t rtd0 = Water.readRTD();
-  Serial.println("Water:" + String(Water.temperature(RNOMINAL, RREF)));
-
-  uint16_t rtd1 = LeftSide.readRTD();
-  Serial.println("LeftSide:" + String(LeftSide.temperature(RNOMINAL, RREF)));
-
-  uint16_t rtd2 = LeftSide.readRTD();
-  Serial.println("LeftSide:" + String(LeftSide.temperature(RNOMINAL, RREF)));
-
-  uint16_t rtd3 = RightSide.readRTD();
-  Serial.println("RightSide:" + String(RightSide.temperature(RNOMINAL, RREF)));
-
-  uint16_t rtd4 = Carb.readRTD();
-  Serial.println("Carb:" + String(Carb.temperature(RNOMINAL, RREF)));
-
-  uint16_t rtd5 = FrontOfEngine.readRTD();
-  Serial.println("FrontOfEngine:" + String(FrontOfEngine.temperature(RNOMINAL, RREF)));
-
-  uint16_t rtd6 = Ambient.readRTD();
-  Serial.println("Ambient:" + String(Ambient.temperature(RNOMINAL, RREF)));  
-}
-
-void InputTest(){
-  Serial.println("Reading SpareInput1:" + String(digitalRead(SpareInput1)));
+void OutputTesting() {
+  Serial.println("Turned ON:LED1");
+  digitalWrite(LED1, HIGH);
+  delay(2500);
+  Serial.println("Turned Off:LED1");
+  digitalWrite(LED1, LOW);
   delay(5000);
-  Serial.println("Reading SpareInput2:" + String(digitalRead(SpareInput2)));
+
+  Serial.println("Turned ON:LED2");
+  digitalWrite(LED2, HIGH);
+  delay(2500);
+  Serial.println("Turned Off:LED2");
+  digitalWrite(LED2, LOW);
   delay(5000);
-  Serial.println("Reading SpareInput3:" + String(digitalRead(SpareInput3)));
+
+  Serial.println("Turned ON:Alarm");
+  digitalWrite(AlarmOut, HIGH);
+  delay(2500);
+  Serial.println("Turned Off:Alarm");
+  digitalWrite(AlarmOut, LOW);
   delay(5000);
-  Serial.println("Reading LoggingIn:" + String(digitalRead(LoggingIn)));
+
+  Serial.println("Turned ON:OUT1");
+  digitalWrite(SpareOutput1, HIGH);
+  delay(2500);
+  Serial.println("Turned Off:OUT1");
+  digitalWrite(SpareOutput1, LOW);
   delay(5000);
-  Serial.println("Reading SDCardDetect:" + String(digitalRead(SDCardDetect)));
+
+  Serial.println("Turned ON:OUT2");
+  digitalWrite(SpareOutput2, HIGH);
+  delay(2500);
+  Serial.println("Turned Off:OUT2");
+  digitalWrite(SpareOutput2, LOW);
+  delay(5000);
+
+  Serial.println("Turned ON:OUT3");
+  digitalWrite(SpareOutput3, HIGH);
+  delay(2500);
+  Serial.println("Turned Off:OUT3");
+  digitalWrite(SpareOutput3, LOW);
+  delay(5000);
+
+  Serial.println("Turned ON:OUT4");
+  digitalWrite(SpareOutput4, HIGH);
+  delay(2500);
+  Serial.println("Turned Off:OUT4");
+  digitalWrite(SpareOutput4, LOW);
   delay(5000);
 }
 
-void OutputTest(){
-  Serial.println("setting SpareOutput1 HIGH");
-  digitalWrite(SpareOutput1,HIGH);
-  delay(2500);
-  Serial.println("setting SpareOutput1 LOW");
-  digitalWrite(SpareOutput1,HIGH);
-  delay(2500);
-
-  Serial.println("setting SpareOutput2 HIGH");
-  digitalWrite(SpareOutput2,HIGH);
-  delay(2500);
-  Serial.println("setting SpareOutput2 LOW");
-  digitalWrite(SpareOutput2,HIGH);
+void InputTesting() {
+  // These are inverted Logic 0=On 1=Off
+  //SOrry not enough room to put an inverter
+  Serial.print("INPUT1:");
+  Serial.println(digitalRead(SpareInput1));
   delay(2500);
 
-  Serial.println("setting SpareOutput3 HIGH");
-  digitalWrite(SpareOutput3,HIGH);
-  delay(2500);
-  Serial.println("setting SpareOutput3 LOW");
-  digitalWrite(SpareOutput3,HIGH);
+  Serial.print("INPUT2:");
+  Serial.println(digitalRead(SpareInput2));
   delay(2500);
 
-  Serial.println("setting SpareOutput4 HIGH");
-  digitalWrite(SpareOutput4,HIGH);
-  delay(2500);
-  Serial.println("setting SpareOutput4 LOW");
-  digitalWrite(SpareOutput4,HIGH);
+  Serial.print("INPUT3:");
+  Serial.println(digitalRead(SpareInput3));
   delay(2500);
 
-  Serial.println("setting OutputSiren HIGH");
-  digitalWrite(OutputSiren,HIGH);
+  Serial.print("Logging:");
+  Serial.println(digitalRead(LoggingInput));
   delay(2500);
-  Serial.println("setting OutputSiren LOW");
-  digitalWrite(OutputSiren,HIGH);
-  delay(2500);
+}
 
-  Serial.println("setting LED1 HIGH");
-  digitalWrite(LED1,HIGH);
-  delay(2500);
-  Serial.println("setting LED1 LOW");
-  digitalWrite(LED1,HIGH);
-  delay(2500);
+float ReadAnalog(int Samples, int PinNumber) {
+  long Sum = 0;
+  float Value = 0;
+  for (int x = 0; x < Samples; x++) {
+    Sum = Sum + analogRead(PinNumber);
+  }
+  Value = (Sum / Samples);
+  return Value;
+}
 
-  Serial.println("setting LED2 HIGH");
-  digitalWrite(LED2,HIGH);
-  delay(2500);
-  Serial.println("setting LED2 LOW");
-  digitalWrite(LED2,HIGH);
-  delay(2500);  
+void OilPressureTesting() {
+  Serial.print("OilPressurePin:");
+  Serial.println(ReadAnalog(50, OilPressurePin));
+  delay(1000);
+}
+
+void AFRTesting() {
+  Serial.print("AFR1:");
+  Serial.println(ReadAnalog(50, AFR1Pin));
+  delay(1000);
+  Serial.print("AFR2:");
+  Serial.println(ReadAnalog(50, AFR2Pin));
+  delay(1000);
+}
+
+void FuelPressureTesting() {
+  Serial.print("FuelPressure1:");
+  Serial.println(ReadAnalog(50, FuelPressure1Pin));
+  delay(1000);
+  Serial.print("FuelPressure2:");
+  Serial.println(ReadAnalog(50, FuelPressure2Pin));
+  delay(1000);
+}
+
+void AltCurrentTesting() {
+  Serial.print("CurrentSensorPin:");
+  Serial.println(ReadAnalog(50, CurrentSensorPin));
+  delay(1000);
+}
+
+void VoltageSensorTesting() {
+  Serial.print("VoltageSensor:");
+  Serial.println(ReadAnalog(50, VoltageSensorPin));
+  delay(1000);
+}
+
+void VacuumTesting() {
+  Serial.print("Vacuum1:");
+  Serial.println(ReadAnalog(50, Vacuum1Pin));
+  delay(1000);
+  Serial.print("Vacuum2:");
+  Serial.println(ReadAnalog(50, Vacuum2Pin));
+  delay(1000);
+}
+
+void ThrottlePositionTesting() {
+  Serial.print("ThrottlePosition:");
+  Serial.println(ReadAnalog(50, ThrottlePositionPin));
+  delay(1000);
+}
+
+void SpareADCTestin() {
+  Serial.print("SpareBufferedADC:");
+  Serial.println(ReadAnalog(50, SpareBufferedADCPin));
+  delay(1000);
+}
+
+void RPMTesting() {
+  digitalWrite(RPMEnable, HIGH);
+  delay(1000);
+
+  Serial.print("RPMADC:");
+  int Reading = ReadAnalog(50, RPMADC);
+  Serial.print(Reading);
+  Serial.print(" : ");
+  Serial.println(Reading * ConversionFactor);
+
+  delay(1000);
+  //digitalWrite(RPMEnable,LOW);
+  //delay(1000);
+}
+
+void SDCardTesting() {
+  Serial.print("SD Detect:");
+  Serial.println(digitalRead(SDCardDetectPin));
+}
+
+void GPSTesting() {
+  Serial.print("GPSBatt:");
+  Serial.println(ReadAnalog(50, GPSBattPin));
+  delay(1000);
+}
+
+void RTCBATTESTING() {
+  Serial.print("RTCBattery:");
+  Serial.println(ReadAnalog(50, RTCBatteryPin));
+  delay(1000);
 }
