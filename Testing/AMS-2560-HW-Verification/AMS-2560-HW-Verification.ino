@@ -1,6 +1,3 @@
-#include <Adafruit_GPS.h>
-#include <Adafruit_PMTK.h>
-#include <NMEA_data.h>
 #include <Wire.h>
 #include <Adafruit_MAX31865.h>
 #include <SPI.h>
@@ -13,6 +10,12 @@
 #define USBSerial Serial
 #define RS232P1 Serial1
 #define RS232P2 Serial2
+
+String inputStringP1 = "";         // a String to hold incoming data
+bool stringCompleteP1 = false;  // whether the string is complete
+String inputStringP2 = "";         // a String to hold incoming data
+bool stringCompleteP2 = false;  // whether the string is complete
+
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 // System Level
@@ -79,6 +82,11 @@ Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
 
 void setup() {
   rtc.begin();
+  
+  // reserve 200 bytes for the inputString:
+  inputStringP1.reserve(200);
+  inputStringP2.reserve(200);
+  
   RS232P1.begin(115200);
   RS232P2.begin(115200);
   USBSerial.begin(115200);
@@ -137,6 +145,59 @@ void loop() {
   //SDCardTesting();
   //GPSTesting();
   //RTCBATTESTING();
+  SerialTestingP1();
+  SerialTestingP2();
+}
+
+void SerialTestingP1(){
+    // print the string when a newline arrives:
+  if (stringCompleteP1) {
+    RS232P1.println(inputStringP1);
+    // clear the string:
+    inputStringP1 = "";
+    stringCompleteP1 = false;
+  }
+  serialEventP1();
+}
+
+void serialEventP1() {
+  while (RS232P1.available()) {
+    // get the new byte:
+    char inChar = (char)RS232P1.read();
+    // add it to the inputString:
+    inputStringP1 += inChar;
+    // if the incoming character is a newline, set a flag so the main loop can
+    // do something about it:
+    if (inChar == '\n') {
+      stringCompleteP1 = true;
+    }
+  }
+}
+
+
+void SerialTestingP2(){
+    // print the string when a newline arrives:
+  if (stringCompleteP2) {
+    RS232P2.println(inputStringP2);
+    // clear the string:
+    inputStringP2 = "";
+    stringCompleteP2 = false;
+  }
+  serialEventP2();
+}
+
+void serialEventP2() {
+  while (RS232P2.available()) {
+    // get the new byte:
+    char inChar = (char)RS232P2.read();
+    // add it to the inputString:
+    inputStringP2 += inChar;
+    // if the incoming character is a newline, set a flag so the main loop can
+    // do something about it:
+    if (inChar == '\n') {
+      stringCompleteP2 = true;
+    }
+  }
 }
 
 void OutputTesting() {
