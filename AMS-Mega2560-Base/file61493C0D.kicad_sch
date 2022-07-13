@@ -446,7 +446,7 @@
         )
       )
     )
-    (symbol "Reference_Voltage:TL431LP" (pin_numbers hide) (pin_names hide) (in_bom yes) (on_board yes)
+    (symbol "Reference_Voltage:TL431LP" (pin_names hide) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at -2.54 2.54 0)
         (effects (font (size 1.27 1.27)))
       )
