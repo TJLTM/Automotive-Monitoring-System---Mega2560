@@ -5,7 +5,7 @@
       "Application": "Pcbnew",
       "Version": "(6.0.0)"
     },
-    "CreationDate": "2022-04-28T11:50:29-07:00"
+    "CreationDate": "2022-07-15T19:40:24-07:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -103,6 +103,16 @@
     {
       "Path": "AMS-Mega2560-Base-Edge_Cuts.gbr",
       "FileFunction": "Profile",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "AMS-Mega2560-Base-F_Fab.gbr",
+      "FileFunction": "AssemblyDrawing,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "AMS-Mega2560-Base-B_Fab.gbr",
+      "FileFunction": "AssemblyDrawing,Bot",
       "FilePolarity": "Positive"
     }
   ],
