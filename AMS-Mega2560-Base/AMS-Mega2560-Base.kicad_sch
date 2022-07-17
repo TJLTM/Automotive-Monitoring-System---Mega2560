@@ -5342,7 +5342,7 @@
       (reference "C30") (unit 1) (value "68uF") (footprint "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-0000615205f8"
-      (reference "C31") (unit 1) (value "0.02uF") (footprint "Capacitor_Tantalum_SMD:CP_EIA-3528-15_AVX-H_Pad1.50x2.35mm_HandSolder")
+      (reference "C31") (unit 1) (value "0.02uF") (footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-000061509d30"
       (reference "C32") (unit 1) (value "1uF") (footprint "Capacitor_THT:C_Radial_D4.0mm_H5.0mm_P1.50mm")
