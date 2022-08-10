@@ -1128,6 +1128,7 @@
     )
   )
 
+
   (junction (at 337.82 142.24) (diameter 0) (color 0 0 0 0)
     (uuid 70d34adf-9bd8-469e-8c77-5c0d7adf511e)
   )
@@ -5345,7 +5346,7 @@
       (reference "C31") (unit 1) (value "0.02uF") (footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/00000000-0000-0000-0000-000061509d30"
-      (reference "C32") (unit 1) (value "1uF") (footprint "Capacitor_THT:C_Radial_D4.0mm_H5.0mm_P1.50mm")
+      (reference "C32") (unit 1) (value "1uF") (footprint "Capacitor_THT:CP_Radial_D4.0mm_P1.50mm")
     )
     (path "/00000000-0000-0000-0000-00006152913d/00000000-0000-0000-0000-0000615c60e1"
       (reference "C36") (unit 1) (value "0.1uF") (footprint "Capacitor_THT:C_Rect_L9.0mm_W3.6mm_P7.50mm_MKT")
@@ -5393,7 +5394,7 @@
       (reference "D10") (unit 1) (value "1N4001") (footprint "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal")
     )
     (path "/4fa38cd6-152a-4f14-8b73-29a5177e2f36/39927a1e-a19f-4d5a-9a0d-3e9e02a09270"
-      (reference "IC6") (unit 1) (value "OPA4340UA") (footprint "SOIC127P600X175-14N")
+      (reference "IC6") (unit 1) (value "OPA4340UA") (footprint "SamacSys_Parts:SOIC127P600X175-14N")
     )
     (path "/00000000-0000-0000-0000-0000623d3962/c07ba97a-6f7c-4a96-b4ac-5292ecd6271d"
       (reference "IC7") (unit 1) (value "LTV-846S") (footprint "SamacSys_Parts:SOP254P1016X460-16N")
@@ -5423,10 +5424,10 @@
       (reference "IC17") (unit 1) (value "MAX232CPE+") (footprint "SamacSys_Parts:DIP762W56P254L1918H457Q16N")
     )
     (path "/00000000-0000-0000-0000-00006152913d/92951735-6b81-4447-8152-6243eaa733aa"
-      (reference "IC19") (unit 1) (value "MAX6326UR31+T") (footprint "SOT95P237X112-3N")
+      (reference "IC19") (unit 1) (value "MAX6326UR31+T") (footprint "SamacSys_Parts:SOT95P237X112-3N")
     )
     (path "/6b0b98f9-1329-4959-9fa9-ce47c8a5340f/39927a1e-a19f-4d5a-9a0d-3e9e02a09270"
-      (reference "IC20") (unit 1) (value "OPA4340UA") (footprint "SOIC127P600X175-14N")
+      (reference "IC20") (unit 1) (value "OPA4340UA") (footprint "SamacSys_Parts:SOIC127P600X175-14N")
     )
     (path "/fed930c9-7381-477e-a974-0910454a19ca"
       (reference "J1") (unit 1) (value "Conn_01x03") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical")
@@ -5471,7 +5472,7 @@
       (reference "J31") (unit 1) (value "Conn_01x02") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
     )
     (path "/00000000-0000-0000-0000-0000614ca8f3/b7f8440c-23b7-437b-b935-4fbe03161fd7"
-      (reference "K1") (unit 1) (value "DIP05-1A72-12L") (footprint "DIP051A7212L")
+      (reference "K1") (unit 1) (value "DIP05-1A72-12L") (footprint "SamacSys_Parts:DIP051A7212L")
     )
     (path "/00000000-0000-0000-0000-000061493c0e/00000000-0000-0000-0000-0000614d7097"
       (reference "L1") (unit 1) (value "33mH") (footprint "Inductor_THT:L_Axial_L9.5mm_D4.0mm_P15.24mm_Horizontal_Fastron_SMCC")
@@ -5588,7 +5589,7 @@
       (reference "Q21") (unit 1) (value "IRF9Z34NPBF") (footprint "SamacSys_Parts:TO254P469X1042X1967-3P")
     )
     (path "/00000000-0000-0000-0000-000061493c0e/54b9aef8-b50a-46a4-bd39-fa76fe97d610"
-      (reference "Q22") (unit 1) (value "IRF9610PBF-BE3") (footprint "TO254P465X1024X2050-3P")
+      (reference "Q22") (unit 1) (value "IRF9610PBF-BE3") (footprint "SamacSys_Parts:TO254P465X1024X2050-3P")
     )
     (path "/00000000-0000-0000-0000-000061493c0e/26286b82-8e1d-44de-8c30-eae394d0f76a"
       (reference "Q23") (unit 1) (value "2N7000") (footprint "Package_TO_SOT_THT:TO-92_Inline")
