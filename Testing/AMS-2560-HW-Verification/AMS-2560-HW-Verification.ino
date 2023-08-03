@@ -57,24 +57,16 @@ Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 // ADC Sensors
-#define FuelPressure1Pin A5
-#define FuelPressure2Pin A6
+#define FuelPressure1Pin A2
+#define FuelPressure2Pin A3
+#define FuelPressure3Pin A4
 #define VoltageSensorPin A0
-#define RTCBatteryPin A1
-#define Vacuum1Pin A2
-#define Vacuum2Pin A3
-#define CurrentSensorPin A4
-#define OilPressurePin A7
-#define AFR1Pin A8
-#define AFR2Pin A9
-#define GPSBattPin A11
-#define ThrottlePositionPin A12
-#define SpareBufferedADCPin A13
-//-----------------------------------------------------------
-//-----------------------------------------------------------
-// RPM
-#define RPMADC A10
-#define RPMEnable 41
+#define OilPressurePin A5
+#define GPSBattPin A1
+#define SpareBufferedADC1Pin A6
+#define SpareBufferedADC2Pin A7
+#define SpareBufferedADC3Pin A8
+#define SpareRAWADC1Pin A9
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 #define SDCardDetectPin 34
@@ -131,20 +123,14 @@ void setup() {
 }
 
 void loop() {
-  //OutputTesting();
-  //InputTesting();
-  //OilPressureTesting();
-  //AFRTesting();
-  //FuelPressureTesting();
-  //AltCurrentTesting();
-  //RPMTesting();
-  //VoltageSensorTesting();
-  //VacuumTesting();
-  //ThrottlePositionTesting();
-  //SpareADCTestin();
-  //SDCardTesting();
-  //GPSTesting();
-  //RTCBATTESTING();
+  OutputTesting();
+  InputTesting();
+  OilPressureTesting();
+  FuelPressureTesting();
+  VoltageSensorTesting();
+  SpareADCTestin();
+  SDCardTesting();
+  GPSBatTesting();
   SerialTestingP1();
   SerialTestingP2();
 }
@@ -173,7 +159,6 @@ void serialEventP1() {
     }
   }
 }
-
 
 void SerialTestingP2(){
     // print the string when a newline arrives:
@@ -287,15 +272,6 @@ void OilPressureTesting() {
   delay(1000);
 }
 
-void AFRTesting() {
-  Serial.print("AFR1:");
-  Serial.println(ReadAnalog(50, AFR1Pin));
-  delay(1000);
-  Serial.print("AFR2:");
-  Serial.println(ReadAnalog(50, AFR2Pin));
-  delay(1000);
-}
-
 void FuelPressureTesting() {
   Serial.print("FuelPressure1:");
   Serial.println(ReadAnalog(50, FuelPressure1Pin));
@@ -303,11 +279,8 @@ void FuelPressureTesting() {
   Serial.print("FuelPressure2:");
   Serial.println(ReadAnalog(50, FuelPressure2Pin));
   delay(1000);
-}
-
-void AltCurrentTesting() {
-  Serial.print("CurrentSensorPin:");
-  Serial.println(ReadAnalog(50, CurrentSensorPin));
+  Serial.print("FuelPressure3:");
+  Serial.println(ReadAnalog(50, FuelPressure3Pin));
   delay(1000);
 }
 
@@ -317,40 +290,19 @@ void VoltageSensorTesting() {
   delay(1000);
 }
 
-void VacuumTesting() {
-  Serial.print("Vacuum1:");
-  Serial.println(ReadAnalog(50, Vacuum1Pin));
-  delay(1000);
-  Serial.print("Vacuum2:");
-  Serial.println(ReadAnalog(50, Vacuum2Pin));
-  delay(1000);
-}
-
-void ThrottlePositionTesting() {
-  Serial.print("ThrottlePosition:");
-  Serial.println(ReadAnalog(50, ThrottlePositionPin));
-  delay(1000);
-}
-
 void SpareADCTestin() {
-  Serial.print("SpareBufferedADC:");
-  Serial.println(ReadAnalog(50, SpareBufferedADCPin));
+  Serial.print("SpareBufferedADC1:");
+  Serial.println(ReadAnalog(50, SpareBufferedADC1Pin));
   delay(1000);
-}
-
-void RPMTesting() {
-  digitalWrite(RPMEnable, HIGH);
+  Serial.print("SpareBufferedADC2:");
+  Serial.println(ReadAnalog(50, SpareBufferedADC2Pin));
   delay(1000);
-
-  Serial.print("RPMADC:");
-  int Reading = ReadAnalog(50, RPMADC);
-  Serial.print(Reading);
-  Serial.print(" : ");
-  Serial.println(Reading * ConversionFactor);
-
+  Serial.print("SpareBufferedADC3:");
+  Serial.println(ReadAnalog(50, SpareBufferedADC3Pin));
   delay(1000);
-  //digitalWrite(RPMEnable,LOW);
-  //delay(1000);
+  Serial.print("SpareRAWADC1:");
+  Serial.println(ReadAnalog(50, SpareRAWADC1Pin));
+  delay(1000);
 }
 
 void SDCardTesting() {
@@ -358,14 +310,8 @@ void SDCardTesting() {
   Serial.println(digitalRead(SDCardDetectPin));
 }
 
-void GPSTesting() {
+void GPSBatTesting() {
   Serial.print("GPSBatt:");
   Serial.println(ReadAnalog(50, GPSBattPin));
-  delay(1000);
-}
-
-void RTCBATTESTING() {
-  Serial.print("RTCBattery:");
-  Serial.println(ReadAnalog(50, RTCBatteryPin));
   delay(1000);
 }

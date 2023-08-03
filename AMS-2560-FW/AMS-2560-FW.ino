@@ -42,8 +42,8 @@ String TempUnits, PressureUnits;
 float LastFuel1, LastFuel2 = 0.0;
 String LastTimeFuel = "";
 //Battery Monitoring
-float LastDCVoltage, LastRTCVoltage = 0.0;
-String LastTimeDCVoltage, LastTimeRTCVoltage = "";
+float LastDCVoltage, LastGPSVoltage = 0.0;
+String LastTimeDCVoltage, LastTimeGPSVoltage = "";
 // Temps
 String LastTimeTemp = "";
 float LastCarbTemp, LastAmbientTemp, LastFrontOfEngineTemp, LastRightSideTemp, LastLeftSideTemp, LastWaterTemp = 0.0;
@@ -70,12 +70,12 @@ Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
 //-----------------------------------------------------------
 //Alarm
 #define AlarmOut 8
-#define WarningLED 11
 #define LED1 43
 #define LED2 45
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 // Spare Inputs Outputs and Analog
+#define LoggingInput 49
 #define SpareInput1 2
 #define SpareInput2 3
 #define SpareInput3 47
@@ -87,26 +87,21 @@ Adafruit_MAX31865 RTDFront = Adafruit_MAX31865(RTDFrontCS);
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 // ADC Sensors
-#define FuelPressure1 A5
-#define FuelPressure2 A6
-#define VoltageSensor A0
-#define RTCBattery A1
-#define Vacuum1 A2
-#define Vacuum2 A3
-#define CurrentSensorPin A4
-#define OilPressurePin A7
-#define AFR1 A8
-#define AFR2 A9
-#define GPSBatt A11
-#define ThrottlePosition A12
-#define SpareBufferedADC A13
+#define FuelPressure1Pin A2
+#define FuelPressure2Pin A3
+#define FuelPressure3Pin A4
+#define VoltageSensorPin A0
+#define OilPressurePin A5
+#define GPSBattPin A1
+#define SpareBufferedADC1Pin A6
+#define SpareBufferedADC2Pin A7
+#define SpareBufferedADC3Pin A8
+#define SpareRAWADC1Pin A9
 //-----------------------------------------------------------
 //-----------------------------------------------------------
-// RPM
-#define RPMADC A10
-#define RPMEnable 41
-//-----------------------------------------------------------
-//-----------------------------------------------------------
+#define SDCardDetectPin 34
+#define SDCS 36
+
 
 void setup() {
   rtc.begin();
@@ -118,7 +113,6 @@ void setup() {
   inputStringRS232P2.reserve(100);
 
   pinMode(AlarmOut, OUTPUT);
-  pinMode(WarningLED, OUTPUT);
   pinMode(LED1, OUTPUT);
   pinMode(LED2, OUTPUT);
 
@@ -189,11 +183,17 @@ void loop() {
     stringCompleteRS232P2 = false;
   }
 
+  SensorData();
+}
+
+void SensorData(){
+  
 }
 
 void FuelPressure() {
-  float FuelPressureDN1 = ReadAnalog(25, FuelPressure1);
-  float FuelPressureDN2 = ReadAnalog(25, FuelPressure2);
+  float FuelPressureDN1 = ReadAnalog(25, FuelPressure1Pin);
+  float FuelPressureDN2 = ReadAnalog(25, FuelPressure2Pin);
+  float FuelPressureDN3 = ReadAnalog(25, FuelPressure3Pin);
 
   //Sensors i'm using drop out at .5 volts and anything below that will show neg pressure. DN 102 translates to 0.5V
   if (FuelPressureDN1 > 102) {
@@ -266,27 +266,24 @@ void RTDSensors() {
 }
 
 
-
-
-
 //------------------------------------------------------------------
 //Other sensors
 //------------------------------------------------------------------
 void ReadBatteryVoltages() {
-  float DCVoltageDN = ReadAnalog(50, VoltageSensor);
-  float RTCVoltageDN = ReadAnalog(50, RTCBattery);
+  float DCVoltageDN = ReadAnalog(50, VoltageSensorPin);
+  float GPSVoltageDN = ReadAnalog(50, GPSBattPin);
 
   LastDCVoltage = 3.8 * ConversionFactor * DCVoltageDN - 1.2;
   LastTimeDCVoltage = GetCurrentTime();
 
-  LastRTCVoltage = ConversionFactor * RTCVoltageDN;
-  LastTimeRTCVoltage = LastTimeDCVoltage;
+  LastGPSVoltage = ConversionFactor * GPSVoltageDN;
+  LastTimeGPSVoltage = LastTimeDCVoltage;
 
   if (LastDCVoltage < 10.5) {
     AddWarningToList(5);
   }
 
-  if (LastRTCVoltage < 2.3) {
+  if (LastGPSVoltage < 2.3) {
     AddWarningToList(1);
   }
 }
@@ -400,74 +397,6 @@ float ReadAnalog(int Samples, int PinNumber) {
   }
   Value = (Sum / Samples);
   return Value;
-}
-
-void ACS_CurrentSensor() {
-  int DN = analogRead(CurrentSensorPin);
-  int Center = 511; //measure this from the device.
-  float AmpPerV = 0.04; //get this from DataSheet for sensor
-  int DNAdjusted = 0;
-  if (DN > Center) {
-    DNAdjusted = DN - Center; //positive case
-  }
-  if (DN < Center) {
-    DNAdjusted = map(DN, Center, 0, 0, Center) * (-1); //negative case
-  }
-  float Amps = (DNAdjusted * ConversionFactor) / AmpPerV;
-  LastAmps = Amps;
-  String LogEntry = "Units,Amps,Alternator," + String(Amps);
-  AddLogEntry(0, "Current Sensor", LogEntry);
-}
-
-void ACS_CurrentSensor() {
-  int DN = analogRead(CurrentSensorPin);
-  int Center = 511; //measure this from the device.
-  float AmpPerV = 0.04; //get this from DataSheet for sensor
-  int DNAdjusted = 0;
-  if (DN > Center) {
-    DNAdjusted = DN - Center; //positive case
-  }
-  if (DN < Center) {
-    void RPM() {
-  // take 50 Samples
-  int Samples = 50;
-  long RPMSum = 0;
-  for (int x = 0; x < Samples; x++) {
-   RPMSum = RPMSum + analogRead(RPMSensorPin);
-  }
-
-  String LogEntry = String(ConversionFactor * (RPMSum / Samples));
-  AddLogEntry(0, "RPM", LogEntry);
-}DNAdjusted = map(DN, Center, 0, 0, Center) * (-1); //negative case
-  }
-  float Amps = (DNAdjusted * ConversionFactor) / AmpPerV;
-  LastAmps = Amps;
-  String LogEntry = "Units,Amps,Alternator," + String(Amps);
-  AddLogEntry(0, "Current Sensor", LogEntry);
-}
-
-void RPM() {
-  // take 50 Samples
-  int Samples = 50;
-  long RPMSum = 0;
-  for (int x = 0; x < Samples; x++) {
-   RPMSum = RPMSum + analogRead(RPMSensorPin);
-  }
-
-  String LogEntry = String(ConversionFactor * (RPMSum / Samples));
-  AddLogEntry(0, "RPM", LogEntry);
-}
-
-void VacuumSensors() {
-  // take 50 Samples
-  int Samples = 50;
-  long ManifoldVacSum = 0;
-  for (int x = 0; x < Samples; x++) {
-   ManifoldVacSum = ManifoldVacSum + analogRead(ManifoldVacuumSensorPin);
-  }
-
-  String LogEntry = "Manifold," + String(ConversionFactor * (ManifoldVacSum / Samples));
-  AddLogEntry(0, "Vacuum Sensors", LogEntry);
 }
 
 void PressureSensors() {
